@@ -3,8 +3,8 @@ package org.javaee8.cdi.events;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
 import java.io.Serializable;
-import javax.annotation.Priority;
 import javax.interceptor.Interceptor;
+import org.jboss.weld.experimental.Priority;
 
 /**
  * @author Radim Hanus
