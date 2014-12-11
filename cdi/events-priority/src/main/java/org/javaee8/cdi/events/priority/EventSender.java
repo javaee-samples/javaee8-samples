@@ -1,4 +1,4 @@
-package org.javaee8.cdi.events;
+package org.javaee8.cdi.events.priority;
 
 /**
  * @author Radim Hanus

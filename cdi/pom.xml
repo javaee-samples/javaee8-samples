@@ -15,6 +15,6 @@
     <name>Java EE 8 CDI Samples</name>
 
     <modules>
-        <module>events</module>
+        <module>events-priority</module>
     </modules>
 </project>

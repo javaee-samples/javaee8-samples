@@ -1,5 +1,9 @@
-package org.javaee8.cdi.events;
+package org.javaee8.cdi.events.priority;
 
+import org.javaee8.cdi.events.priority.EventSender;
+import org.javaee8.cdi.events.priority.GreetingSender;
+import org.javaee8.cdi.events.priority.GreetingReceiver;
+import org.javaee8.cdi.events.priority.EventReceiver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
