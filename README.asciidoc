@@ -1,4 +1,37 @@
 Java EE 8 Samples
 =================
 
+. Download http://download.jboss.org/wildfly/8.2.0.Final/wildfly-8.2.0.Final.zip
+. unzip wildfly-8.2.0.Final.zip
+. Download Weld3 Alpha 3
++
+[source, text]
+----
+curl -L -o weld3-alpha3-patch-wildfly8.2.zip http://sourceforge.net/projects/jboss/files/Weld/3.0.0.Alpha3/wildfly-8.2.0.Final-weld-3.0.0.Alpha3-patch.zip/download
+----
++
+. Apply the patch
++
+[source, text]
+----
+./wildfly-8.2.0.Final/bin/jboss-cli.sh --command="patch apply ./weld3-alpha3-patch-wildfly8.2.zip"
+{
+    "outcome" : "success",
+    "result" : {}
+}
+----
++
+. Start WildFly
++
+[source, text]
+----
+./wildfly-8.2.0.Final/bin/standalone.sh
+----
++
+. Run tests
++
+[source, text]
+----
+mvn test
+----
 
