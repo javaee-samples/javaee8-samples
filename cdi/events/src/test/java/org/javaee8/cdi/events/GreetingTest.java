@@ -48,6 +48,6 @@ public class GreetingTest {
         // send a new greet
         sender.send("Welcome");
         // receiver must not belongs to the dependent pseudo-scope since we are checking the result
-        assertEquals("Welcome", receiver.getGreet());
+        assertEquals("Welcome1Welcome2", receiver.getGreet());
     }
 }

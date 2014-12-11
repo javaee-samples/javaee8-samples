@@ -15,8 +15,20 @@ public class GreetingReceiver implements EventReceiver, Serializable {
 
     private String greet = "Willkommen";
 
+    /**
+     * Lower priority
+     * @param greet 
+     */
     void receive(@Observes @Priority(Interceptor.Priority.APPLICATION + 200) String greet) {
-        this.greet = greet;
+        this.greet += greet + "2";
+    }
+
+    /**
+     * Higher priority
+     * @param greet 
+     */
+    void receive2(@Observes @Priority(Interceptor.Priority.APPLICATION) String greet) {
+        this.greet = greet + "1";
     }
 
     @Override
