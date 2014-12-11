@@ -1,8 +1,7 @@
 Java EE 8 Samples
 =================
 
-. Download http://download.jboss.org/wildfly/8.2.0.Final/wildfly-8.2.0.Final.zip
-. unzip wildfly-8.2.0.Final.zip
+. Download WildFly 8.2.0[http://download.jboss.org/wildfly/8.2.0.Final/wildfly-8.2.0.Final.zip] and unzip
 . Download Weld3 Alpha 3
 +
 [source, text]
