@@ -1,34 +1,44 @@
 package org.javaee8.cdi.events.priority;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.Priority;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
-import java.io.Serializable;
 import javax.interceptor.Interceptor;
-import org.jboss.weld.experimental.Priority;
+import java.io.Serializable;
 
 /**
+ * Using {@link javax.annotation.Priority} annotation to define an order in which observer methods are called.<br/>
+ * Observers with smaller priority values are called first.
+ *
  * @author Radim Hanus
  * @author Arun Gupta
+ *
+ * @see <a href="http://docs.jboss.org/cdi/spec/2.0.EDR2/cdi-spec.html#observer_ordering">relevant chapter in cdi-2.0 spec</a>
  */
-@SessionScoped
+@RequestScoped
 public class GreetingReceiver implements EventReceiver, Serializable {
 
     private String greet = "Willkommen";
 
     /**
-     * Lower priority
-     * @param greet 
+     * Higher priority
      */
-    void receive(@Observes @Priority(Interceptor.Priority.APPLICATION + 200) String greet) {
-        this.greet += greet + "2";
+    void receiveFirst(@Observes @Priority(Interceptor.Priority.APPLICATION) String greet) {
+        this.greet = greet + "First ";
     }
 
     /**
-     * Higher priority
-     * @param greet 
+     * Middle priority, uses default priority Interceptor.Priority.APPLICATION + 500
      */
-    void receive2(@Observes @Priority(Interceptor.Priority.APPLICATION) String greet) {
-        this.greet = greet + "1";
+    void receiveSecond(@Observes String greet) {
+        this.greet += greet + "Second ";
+    }
+
+    /**
+     * Lower priority
+     */
+    void receiveThird(@Observes @Priority(Interceptor.Priority.APPLICATION + 1000) String greet) {
+        this.greet += greet + "Third";
     }
 
     @Override
