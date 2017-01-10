@@ -21,8 +21,11 @@
     </properties>
 
     <modules>
-        <module>cache-put</module>
+        <module>cache-basics</module>
         <module>cache-result</module>
+        <module>cache-put</module>
+        <module>cache-remove</module>
+        <module>cache-remove-all</module>
     </modules>
 
 <!--
