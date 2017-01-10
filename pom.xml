@@ -25,7 +25,8 @@
 
     <modules>
         <module>cdi</module>
-        <!--<module>jsonb</module>-->
+        <module>jcache</module>
+        <module>jsonb</module>
     </modules>
 
     <dependencyManagement>
@@ -33,7 +34,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.11.Final</version>
+                <version>1.1.12.Final</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -41,9 +42,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- The Java EE 8 API, which is the main and only API which this project is
-             providing samples for.
-         -->
+        <!-- When available use Java EE 8 API exclusively -->
 <!--
         <dependency>
             <groupId>javax</groupId>
@@ -53,9 +52,7 @@
         </dependency>
 -->
 
-        <!-- Particular Java EE 8 JSRs while Java EE 8 API bundle is not available.
-             Inspired by pom.xml dependencies of weld-api-parent 3.0.Beta1
-        -->
+        <!-- Untouched JSR -->
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
@@ -63,17 +60,22 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.spec.javax.interceptor</groupId>
-            <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
-            <version>1.0.0.Final</version>
+            <groupId>javax.interceptor</groupId>
+            <artifactId>javax.interceptor-api</artifactId>
+            <version>1.2</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Upgraded JSR 250: Common annotations -->
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- New JSR 365: CDI 2.0  -->
+        <!-- not a part of wildfly-10.1 but should be installed from a cdi/weld wildfly module -->
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
@@ -90,9 +92,16 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- New JSR 107: JCACHE  -->
+        <!-- not a part of wildfly-10.1 but should be installed from a jcache/infinispan wildfly module -->
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- Test dependencies which can be used in sub-modules -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

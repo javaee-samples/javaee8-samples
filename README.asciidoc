@@ -1,8 +1,13 @@
 Java EE 8 Samples
-=================
+-----------------
+Covered JSRs
+~~~~~~~~~~~~
+* JSR 365: CDI 2.0
+* JSR 107: JCACHE
+* JSR 367: JSON-B
 
-Only CDI 2.0 related samples are covered by now.
-
+Running the tests
+~~~~~~~~~~~~~~~~~
 . Download http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip[WildFly 10.1] and unzip
 . Download Weld 3.0.0.Beta1 as a patch for WildFly 10.1
 +
@@ -20,6 +25,19 @@ curl -L http://download.jboss.org/weld/3.0.0.Beta1/wildfly-10.1.0.Final-weld-3.0
     "outcome" : "success",
     "result" : {}
 }
+----
++
+. Download Infinispan 9.0.0.Beta1 packaged modules for deploying in WildFly
++
+[source, text]
+----
+curl -L http://downloads.jboss.org/infinispan/9.0.0.Beta1/infinispan-wildfly-modules-9.0.0.Beta1.zip -o infinispan-wildfly-modules-9.0.0.Beta1.zip
+----
+. Unzip and copy modules
++
+[source, text]
+----
+unzip ./infinispan-wildfly-modules-9.0.0.Beta1.zip -d /wildfly-10.1.0.Final/modules
 ----
 +
 . Start WildFly
