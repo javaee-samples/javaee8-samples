@@ -9,14 +9,14 @@ import javax.cache.annotation.CacheValue;
 /**
  * @author Radim Hanus
  */
-@CacheDefaults(cacheName = "cache.put.default")
-public class CachePutService {
+@CacheDefaults(cacheName = "cache.default")
+public class KeyValueService<K, V> {
     @CachePut
-    public void create(String id, @CacheValue String data) {
+    public void put(K key, @CacheValue V value) {
     }
 
     @CacheResult
-    public String find(String id) {
+    public String get(K key) {
         return null;
     }
 }

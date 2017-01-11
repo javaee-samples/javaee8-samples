@@ -14,25 +14,24 @@ import static org.junit.Assert.*;
 
 
 @RunWith(Arquillian.class)
-public class CachePutServiceTest {
+public class KeyValueServiceTest {
     @Deployment
     public static Archive<?> deploy() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(CachePutService.class)
+                .addClasses(KeyValueService.class)
                 .addAsWebInfResource("beans.xml")
                 .addAsWebInfResource("jboss-deployment-structure.xml");
     }
 
     @Inject
-    private CachePutService service;
+    private KeyValueService<String, String> service;
 
     @Test
     public void test() throws Exception {
-        service.create("ticket_1", "JCACHE");
+        assertNull(service.get("JSR107"));
 
-        assertNotNull(service.find("ticket_1"));
-        assertEquals("JCACHE", service.find("ticket_1"));
-
-        assertNull(service.find("ticket_2"));
+        service.put("JSR107", "JCACHE");
+        assertNotNull(service.get("JSR107"));
+        assertEquals("JCACHE", service.get("JSR107"));
     }
 }

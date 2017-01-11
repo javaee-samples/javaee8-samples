@@ -21,8 +21,8 @@
 
     <modules>
         <module>create-cache</module>
-        <module>cache-result</module>
-        <module>cache-put</module>
+        <module>annotation-cache-result</module>
+        <module>annotation-cache-put</module>
         <module>cache-remove</module>
         <module>cache-remove-all</module>
     </modules>
