@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>cache-basics</artifactId>
+    <artifactId>create-cache</artifactId>
 </project>
