@@ -10,8 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.javaee8.jcache</groupId>
-    <artifactId>jcache-samples</artifactId>
+    <artifactId>jcache</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>JSR 107: JCACHE Samples</name>
@@ -21,7 +20,7 @@
     </properties>
 
     <modules>
-        <module>cache-basics</module>
+        <module>create-cache</module>
         <module>cache-result</module>
         <module>cache-put</module>
         <module>cache-remove</module>

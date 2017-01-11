@@ -1,4 +1,4 @@
-package org.javaee8.jcache.basics;
+package org.javaee8.jcache.core;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -14,18 +14,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 
+/**
+ * @author Radim Hanus
+ */
 @RunWith(Arquillian.class)
-public class SimpleDataServiceTest {
+public class KeyValueServiceTest {
     @Deployment
     public static Archive<?> deploy() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(SimpleDataService.class)
+                .addClasses(KeyValueService.class)
                 .addAsWebInfResource("beans.xml")
                 .addAsWebInfResource("jboss-deployment-structure.xml");
     }
 
     @Inject
-    private SimpleDataService service;
+    private KeyValueService<String, String> service;
 
     @Test
     public void test() throws Exception {

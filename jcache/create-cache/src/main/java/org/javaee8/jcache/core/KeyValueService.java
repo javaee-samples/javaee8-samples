@@ -1,4 +1,4 @@
-package org.javaee8.jcache.basics;
+package org.javaee8.jcache.core;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -12,14 +12,14 @@ import javax.cache.spi.CachingProvider;
 /**
  * @author Radim Hanus
  */
-public class SimpleDataService {
-    private Cache<String, String> cache;
+public class KeyValueService<K,V> {
+    private Cache<K, V> cache;
 
     @PostConstruct
     void init() {
         CachingProvider cachingProvider = Caching.getCachingProvider();
         CacheManager cacheManager = cachingProvider.getCacheManager();
-        MutableConfiguration<String, String> config = new MutableConfiguration<>();
+        MutableConfiguration<K, V> config = new MutableConfiguration<>();
         cache = cacheManager.createCache("cache.default", config);
     }
 
@@ -28,15 +28,15 @@ public class SimpleDataService {
         cache.close();
     }
 
-    public void put(String key, String value) {
+    public void put(K key, V value) {
         cache.put(key, value);
     }
 
-    public String get(String key) {
+    public V get(K key) {
         return cache.get(key);
     }
 
-    public void remove(String key) {
+    public void remove(K key) {
         cache.remove(key);
     }
 }
