@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>cache-remove</artifactId>
+    <artifactId>annotation-cache-remove</artifactId>
 </project>

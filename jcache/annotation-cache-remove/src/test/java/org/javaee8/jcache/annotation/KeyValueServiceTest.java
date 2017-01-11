@@ -10,28 +10,32 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 @RunWith(Arquillian.class)
-public class CacheRemoveServiceTest {
+public class KeyValueServiceTest {
     @Deployment
     public static Archive<?> deploy() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(CacheRemoveService.class)
+                .addClasses(KeyValueService.class)
                 .addAsWebInfResource("beans.xml")
                 .addAsWebInfResource("jboss-deployment-structure.xml");
     }
 
     @Inject
-    private CacheRemoveService service;
+    private KeyValueService<String, String> service;
 
     @Test
     public void test() throws Exception {
-        assertEquals("Dude_1", service.find("Dude"));
-        assertEquals("Dude_1", service.find("Dude"));
+        assertNull(service.get("JSR107"));
 
-        service.delete("Dude");
-        assertEquals("Dude_2", service.find("Dude"));
+        service.put("JSR107", "JCACHE");
+        assertNotNull(service.get("JSR107"));
+        assertEquals("JCACHE", service.get("JSR107"));
+
+
+        service.delete("JSR107");
+        assertNull(service.get("JSR107"));
     }
 }
