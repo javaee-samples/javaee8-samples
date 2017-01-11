@@ -8,7 +8,12 @@ Covered JSRs
 
 Running the tests
 ~~~~~~~~~~~~~~~~~
-. Download http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip[WildFly 10.1] and unzip
+. Download WildFly 10.1 and unzip it
++
+[source, text]
+----
+curl -L http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip -o wildfly-10.1.0.Final.zip
+----
 . Download Weld 3.0.0.Beta1 as a patch for WildFly 10.1
 +
 [source, text]

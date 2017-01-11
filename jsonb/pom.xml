@@ -10,7 +10,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>jsonb</artifactId>
+    <groupId>org.javaee8.json-b</groupId>
+    <artifactId>json-b-samples</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>JSR 367: JSON-B Samples</name>
