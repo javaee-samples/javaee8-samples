@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>cache-result</artifactId>
+    <artifactId>annotation-cache-result</artifactId>
 </project>
