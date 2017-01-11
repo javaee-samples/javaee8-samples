@@ -11,35 +11,34 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 
 @RunWith(Arquillian.class)
-public class CacheRemoveAllServiceTest {
+public class KeyValueServiceTest {
     @Deployment
     public static Archive<?> deploy() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(CacheRemoveAllService.class)
+                .addClasses(KeyValueService.class)
                 .addAsWebInfResource("beans.xml")
                 .addAsWebInfResource("jboss-deployment-structure.xml");
     }
 
     @Inject
-    private CacheRemoveAllService service;
+    private KeyValueService<String, String> service;
 
     @Test
     public void test() throws Exception {
-        assertEquals("Dude_1", service.find("Dude"));
-        assertEquals("Joe_2", service.find("Joe"));
+        assertNull(service.get("JSR107"));
+        service.put("JSR107", "JCACHE");
+        assertEquals("JCACHE", service.get("JSR107"));
 
-        assertEquals("Dude_1", service.find("Dude"));
-        assertEquals("Joe_2", service.find("Joe"));
-
-        service.delete("Dude");
-        assertEquals("Dude_3", service.find("Dude"));
-        assertEquals("Joe_2", service.find("Joe"));
+        assertNull(service.get("JSR367"));
+        service.put("JSR367", "JSON-B");
+        assertEquals("JSON-B", service.get("JSR367"));
 
         service.deleteAll();
-        assertEquals("Dude_4", service.find("Dude"));
-        assertEquals("Joe_5", service.find("Joe"));
+        assertNull(service.get("JSR107"));
+        assertNull(service.get("JSR367"));
     }
 }

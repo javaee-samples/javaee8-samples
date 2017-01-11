@@ -24,7 +24,7 @@
         <module>annotation-cache-result</module>
         <module>annotation-cache-put</module>
         <module>annotation-cache-remove</module>
-        <module>cache-remove-all</module>
+        <module>annotation-cache-remove-all</module>
     </modules>
 
 <!--
