@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>cache-put</artifactId>
+    <artifactId>annotation-cache-put</artifactId>
 </project>

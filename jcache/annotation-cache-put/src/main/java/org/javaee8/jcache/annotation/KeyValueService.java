@@ -16,7 +16,7 @@ public class KeyValueService<K, V> {
     }
 
     @CacheResult
-    public String get(K key) {
+    public V get(K key) {
         return null;
     }
 }
