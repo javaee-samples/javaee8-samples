@@ -8,7 +8,7 @@ import javax.cache.annotation.CacheResult;
  * @author Radim Hanus
  */
 @CacheDefaults(cacheName = "cache.default")
-public class NamedCacheService {
+public class DoubleService {
     private int nameCallCount = 0;
     private int dataCallCount = 0;
 

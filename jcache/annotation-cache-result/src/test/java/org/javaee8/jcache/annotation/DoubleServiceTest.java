@@ -14,24 +14,28 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(Arquillian.class)
-public class SimpleCacheServiceTest {
+public class DoubleServiceTest {
     @Deployment
     public static Archive<?> deploy() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(SimpleCacheService.class)
+                .addClasses(DoubleService.class)
                 .addAsWebInfResource("beans.xml")
                 .addAsWebInfResource("jboss-deployment-structure.xml");
     }
 
     @Inject
-    private SimpleCacheService service;
+    private DoubleService service;
 
     @Test
     public void test() throws Exception {
         assertEquals("Dude_1", service.getName("Dude"));
+        assertEquals("Dude_data_1", service.getData("Dude"));
         assertEquals("Dude_1", service.getName("Dude"));
+        assertEquals("Dude_data_1", service.getData("Dude"));
 
         assertEquals("Joe_2", service.getName("Joe"));
+        assertEquals("Joe_data_2", service.getData("Joe"));
         assertEquals("Joe_2", service.getName("Joe"));
+        assertEquals("Joe_data_2", service.getData("Joe"));
     }
 }

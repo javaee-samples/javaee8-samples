@@ -6,7 +6,7 @@ import javax.cache.annotation.CacheResult;
 /**
  * @author Radim Hanus
  */
-public class SimpleCacheService {
+public class SingleService {
     private int callCount = 0;
 
     @CacheResult
