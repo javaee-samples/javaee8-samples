@@ -21,12 +21,13 @@
     </properties>
 
     <modules>
-        <module>create-cache</module>
-        <module>configure-cache</module>
         <module>annotation-cache-result</module>
         <module>annotation-cache-put</module>
         <module>annotation-cache-remove</module>
         <module>annotation-cache-remove-all</module>
+        <module>create-cache</module>
+        <module>configure-cache-expiry</module>
+        <module>configure-cache-loaders</module>
     </modules>
 
 <!--
