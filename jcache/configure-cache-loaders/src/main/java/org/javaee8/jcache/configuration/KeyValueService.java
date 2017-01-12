@@ -18,12 +18,13 @@ import java.util.stream.Collectors;
  * @author Radim Hanus
  */
 public class KeyValueService {
+    private CacheManager cacheManager;
     private Cache<String, String> cache;
 
     @PostConstruct
     void init() {
         CachingProvider cachingProvider = Caching.getCachingProvider();
-        CacheManager cacheManager = cachingProvider.getCacheManager();
+        cacheManager = cachingProvider.getCacheManager();
         MutableConfiguration<String, String> config = new MutableConfiguration<>();
 
         // synchronization with an external resource when cache entries are read
@@ -32,12 +33,14 @@ public class KeyValueService {
         // synchronization with an external resource when cache entries are updated and deleted
         config.setCacheWriterFactory(factory).setWriteThrough(true);
 
+        // type checking on cache operations
+        config.setTypes(String.class, String.class);
         cache = cacheManager.createCache("cache.default", config);
     }
 
     @PreDestroy
     void destroy() {
-        cache.close();
+        cacheManager.close();
     }
 
     public void put(String key, String value) {
