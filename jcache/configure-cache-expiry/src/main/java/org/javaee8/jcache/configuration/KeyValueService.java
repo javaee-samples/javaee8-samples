@@ -24,8 +24,9 @@ public class KeyValueService<K,V> {
         CacheManager cacheManager = cachingProvider.getCacheManager();
         MutableConfiguration<K, V> config = new MutableConfiguration<>();
 
-        // expire if last access time older than 1 sec
+        // cache entries are supposed to expire if its last access time is older than 1 sec
         config.setExpiryPolicyFactory(AccessedExpiryPolicy.factoryOf(new Duration(TimeUnit.SECONDS, 1)));
+
         cache = cacheManager.createCache("cache.default", config);
     }
 

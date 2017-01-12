@@ -37,7 +37,8 @@ public class KeyValueServiceTest {
         service.put("Dude", "White Russian");
         assertEquals("White Russian", service.get("Dude"));
 
-        service.remove("Dude");
+        Thread.sleep(1_100L);
+
         assertNull(service.get("Dude"));
     }
 }
