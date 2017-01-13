@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>configure-cache</artifactId>
+    <artifactId>configure-cache-expiry</artifactId>
 </project>

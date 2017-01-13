@@ -28,6 +28,7 @@
         <module>create-cache</module>
         <module>configure-cache-expiry</module>
         <module>configure-cache-loaders</module>
+        <module>configure-cache-listener</module>
     </modules>
 
 <!--

@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>configure-cache-loaders</artifactId>
+    <artifactId>configure-cache-listener</artifactId>
 </project>
