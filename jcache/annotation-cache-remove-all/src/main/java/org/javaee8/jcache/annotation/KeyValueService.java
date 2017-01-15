@@ -17,10 +17,6 @@ public class KeyValueService<K, V> {
         return null;
     }
 
-    @CacheRemove
-    public void delete(K key) {
-    }
-
     @CacheRemoveAll
     public void deleteAll() {
     }

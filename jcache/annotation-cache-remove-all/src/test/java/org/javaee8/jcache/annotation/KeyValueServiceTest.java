@@ -30,10 +30,11 @@ public class KeyValueServiceTest {
     @Test
     public void test() throws Exception {
         assertNull(service.get("JSR107"));
+        assertNull(service.get("JSR367"));
+
         service.put("JSR107", "JCACHE");
         assertEquals("JCACHE", service.get("JSR107"));
 
-        assertNull(service.get("JSR367"));
         service.put("JSR367", "JSON-B");
         assertEquals("JSON-B", service.get("JSR367"));
 

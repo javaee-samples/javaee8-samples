@@ -10,7 +10,8 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 
 @RunWith(Arquillian.class)
@@ -31,7 +32,6 @@ public class KeyValueServiceTest {
         assertNull(service.get("JSR107"));
 
         service.put("JSR107", "JCACHE");
-        assertNotNull(service.get("JSR107"));
         assertEquals("JCACHE", service.get("JSR107"));
     }
 }
