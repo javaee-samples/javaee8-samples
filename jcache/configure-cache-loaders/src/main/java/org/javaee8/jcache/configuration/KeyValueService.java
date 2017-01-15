@@ -25,16 +25,16 @@ public class KeyValueService {
     void init() {
         CachingProvider cachingProvider = Caching.getCachingProvider();
         cacheManager = cachingProvider.getCacheManager();
+
         MutableConfiguration<String, String> config = new MutableConfiguration<>();
 
         // synchronization with an external resource when cache entries are read
         Factory<KeyValueLoaderWriter> factory = FactoryBuilder.factoryOf(new KeyValueLoaderWriter());
         config.setCacheLoaderFactory(factory).setReadThrough(true);
+
         // synchronization with an external resource when cache entries are updated and deleted
         config.setCacheWriterFactory(factory).setWriteThrough(true);
 
-        // type checking on cache operations
-        config.setTypes(String.class, String.class);
         cache = cacheManager.createCache("cache.default", config);
     }
 

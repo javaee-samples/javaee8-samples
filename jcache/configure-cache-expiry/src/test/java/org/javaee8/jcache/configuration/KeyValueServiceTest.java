@@ -32,13 +32,15 @@ public class KeyValueServiceTest {
 
     @Test
     public void test() throws Exception {
-        assertNull(service.get("Dude"));
+        // empty cache
+        assertNull(service.get("JSR107"));
 
-        service.put("Dude", "White Russian");
-        assertEquals("White Russian", service.get("Dude"));
+        // available in cache
+        service.put("JSR107", "JCACHE");
+        assertEquals("JCACHE", service.get("JSR107"));
 
-        Thread.sleep(1_100L);
-
-        assertNull(service.get("Dude"));
+        // removed from cache after access timeout
+        Thread.sleep(KeyValueService.CACHE_TIMEOUT_MS + 1L);
+        assertNull(service.get("JSR107"));
     }
 }

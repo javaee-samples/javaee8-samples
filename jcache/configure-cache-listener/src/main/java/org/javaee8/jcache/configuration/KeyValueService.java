@@ -17,26 +17,26 @@ import javax.cache.spi.CachingProvider;
 public class KeyValueService<K,V> {
     private CacheManager cacheManager;
     private Cache<K, V> primaryCache;
-    private Cache<K, V> removedEntriesCache;
+    private Cache<K, V> secondaryCache;
 
     @PostConstruct
     void init() {
         CachingProvider cachingProvider = Caching.getCachingProvider();
         cacheManager = cachingProvider.getCacheManager();
 
-        removedEntriesCache = cacheManager.createCache("cache.default", new MutableConfiguration<>());
-
         MutableConfiguration<K, V> config = new MutableConfiguration<>();
-        // removed cache entries are returned back by a listener
+        secondaryCache = cacheManager.createCache("cache.secondary", config);
+
+        // removed entries are inserted into secondary cache by the listener
         config.addCacheEntryListenerConfiguration(
                 new MutableCacheEntryListenerConfiguration<>(
-                        FactoryBuilder.factoryOf(new KeyValueEntryRemovedListener<>(removedEntriesCache)),
+                        FactoryBuilder.factoryOf(new KeyValueEntryRemovedListener<>(secondaryCache)),
                         null,
                         true,
-                        false)
+                        true)
         );
 
-        primaryCache = cacheManager.createCache("cache.removed", config);
+        primaryCache = cacheManager.createCache("cache.primary", config);
     }
 
     @PreDestroy
@@ -52,8 +52,8 @@ public class KeyValueService<K,V> {
         return primaryCache.get(key);
     }
 
-    public V getRemoved(K key) {
-        return removedEntriesCache.get(key);
+    public V getSecondary(K key) {
+        return secondaryCache.get(key);
     }
 
     public void remove(K key) {

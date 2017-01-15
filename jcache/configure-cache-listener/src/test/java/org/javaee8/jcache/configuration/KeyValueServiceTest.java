@@ -32,16 +32,18 @@ public class KeyValueServiceTest {
 
     @Test
     public void test() throws Exception {
+        // empty both primary ans secondary caches
         assertNull(service.get("JSR107"));
-        assertNull(service.getRemoved("JSR107"));
+        assertNull(service.getSecondary("JSR107"));
 
+        // available only in primary cache
         service.put("JSR107", "JCACHE");
         assertEquals("JCACHE", service.get("JSR107"));
-        assertNull(service.getRemoved("JSR107"));
+        assertNull(service.getSecondary("JSR107"));
 
+        // removed from primary cache, but available in secondary cache
         service.remove("JSR107");
         assertNull(service.get("JSR107"));
-        // should be available because of listener
-        assertEquals("JCACHE", service.getRemoved("JSR107"));
+        assertEquals("JCACHE", service.getSecondary("JSR107"));
     }
 }
