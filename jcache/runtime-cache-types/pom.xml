@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>configure-cache-types</artifactId>
+    <artifactId>runtime-cache-types</artifactId>
 </project>

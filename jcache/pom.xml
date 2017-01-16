@@ -28,7 +28,7 @@
         <module>configure-cache-expiry</module>
         <module>configure-cache-loaders</module>
         <module>configure-cache-listener</module>
-        <module>configure-cache-types</module>
+        <module>runtime-cache-types</module>
     </modules>
 
 <!--

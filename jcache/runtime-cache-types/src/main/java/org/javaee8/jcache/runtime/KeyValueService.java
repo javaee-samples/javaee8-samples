@@ -1,4 +1,4 @@
-package org.javaee8.jcache.configuration;
+package org.javaee8.jcache.runtime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

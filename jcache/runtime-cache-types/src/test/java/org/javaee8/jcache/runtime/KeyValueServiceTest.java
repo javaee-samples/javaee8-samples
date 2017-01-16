@@ -1,4 +1,4 @@
-package org.javaee8.jcache.configuration;
+package org.javaee8.jcache.runtime;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
