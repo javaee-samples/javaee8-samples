@@ -42,7 +42,7 @@ curl -L http://downloads.jboss.org/infinispan/9.0.0.Beta1/infinispan-wildfly-mod
 +
 [source, text]
 ----
-unzip ./infinispan-wildfly-modules-9.0.0.Beta1.zip -d /wildfly-10.1.0.Final/modules
+unzip ./infinispan-wildfly-modules-9.0.0.Beta1.zip -d ./wildfly-10.1.0.Final/modules
 ----
 +
 . Start WildFly
