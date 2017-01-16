@@ -1,4 +1,4 @@
-package org.javaee8.jcache.core;
+package org.javaee8.jcache.configuration;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -10,8 +10,10 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.hamcrest.CoreMatchers.either;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 
 /**
@@ -28,16 +30,21 @@ public class KeyValueServiceTest {
     }
 
     @Inject
-    private KeyValueService<String, String> service;
+    private KeyValueService service;
 
     @Test
     public void test() throws Exception {
-        assertNull(service.get("Dude"));
+        // available in cache
+        service.put("JSR107", "JCACHE");
+    }
 
-        service.put("Dude", "White Russian");
-        assertEquals("White Russian", service.get("Dude"));
-
-        service.remove("Dude");
-        assertNull(service.get("Dude"));
+    @Test
+    public void testIllegalTypes() throws Exception {
+        try {
+            service.put(1, 10);
+            fail();
+        } catch (Exception e) {
+            assertThat(e, either(instanceOf(IllegalArgumentException.class)).or(instanceOf(ClassCastException.class)));
+        }
     }
 }

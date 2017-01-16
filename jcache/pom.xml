@@ -25,10 +25,10 @@
         <module>annotation-cache-put</module>
         <module>annotation-cache-remove</module>
         <module>annotation-cache-remove-all</module>
-        <module>create-cache</module>
         <module>configure-cache-expiry</module>
         <module>configure-cache-loaders</module>
         <module>configure-cache-listener</module>
+        <module>configure-cache-types</module>
     </modules>
 
 <!--
