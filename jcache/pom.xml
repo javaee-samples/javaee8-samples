@@ -29,6 +29,7 @@
         <module>configure-cache-loaders</module>
         <module>configure-cache-listener</module>
         <module>configure-cache-filter</module>
+        <module>configure-cache-store-by</module>
         <module>runtime-cache-types</module>
     </modules>
 
