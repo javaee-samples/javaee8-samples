@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan xmlns="urn:infinispan:config:9.0">
+    <cache-container default-cache="cache.from.xml.config">
+        <local-cache name="cache.from.xml.config">
+            <eviction strategy="LRU" size="2"/>
+        </local-cache>
+    </cache-container>
+</infinispan>
