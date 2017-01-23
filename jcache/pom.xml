@@ -17,7 +17,8 @@
     <name>JSR 107: JCACHE Samples</name>
 
     <properties>
-        <!--<version.infinispan>8.2.4.Final</version.infinispan>-->
+        <!--<version.infinispan>9.0.0.Beta1</version.infinispan>-->
+        <version.infinispan>8.2.4.Final</version.infinispan>
     </properties>
 
     <modules>
@@ -32,9 +33,9 @@
         <module>configure-cache-store-by</module>
         <module>runtime-cache-types</module>
         <module>infinispan-max-entries</module>
+        <module>infinispan-externalizer</module>
     </modules>
 
-<!--
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -46,14 +47,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-jcache</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
--->
 
 </project>

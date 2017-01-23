@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan xmlns="urn:infinispan:config:9.0">
+    <cache-container default-cache="cache.from.xml.config">
+        <serialization>
+            <advanced-externalizer class="org.javaee8.jcache.configuration.MyValueExternalizer"/>
+        </serialization>
+        <local-cache name="cache.from.xml.config">
+            <store-as-binary/>
+        </local-cache>
+    </cache-container>
+</infinispan>
