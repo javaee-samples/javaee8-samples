@@ -13,7 +13,7 @@ import java.net.URI;
  * @author Radim Hanus
  */
 public class KeyValueService<K,V> {
-    public static final String CACHE_NAME = "cache.from.xml.config";
+    public static final String CACHE_NAME = "defaultCache";
 
     private CacheManager cacheManager;
 

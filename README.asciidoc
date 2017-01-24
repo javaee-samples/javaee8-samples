@@ -32,17 +32,17 @@ curl -L http://download.jboss.org/weld/3.0.0.Beta1/wildfly-10.1.0.Final-weld-3.0
 }
 ----
 +
-. Download Infinispan 9.0.0.Beta1 packaged modules for deploying in WildFly
+. Download Infinispan 9.0.0.Beta2 packaged modules for deploying in WildFly
 +
 [source, text]
 ----
-curl -L http://downloads.jboss.org/infinispan/9.0.0.Beta1/infinispan-wildfly-modules-9.0.0.Beta1.zip -o infinispan-wildfly-modules-9.0.0.Beta1.zip
+curl -L http://downloads.jboss.org/infinispan/9.0.0.Beta2/infinispan-wildfly-modules-9.0.0.Beta2.zip -o infinispan-wildfly-modules-9.0.0.Beta2.zip
 ----
 . Unzip and copy modules
 +
 [source, text]
 ----
-unzip ./infinispan-wildfly-modules-9.0.0.Beta1.zip -d ./wildfly-10.1.0.Final/modules
+unzip ./infinispan-wildfly-modules-9.0.0.Beta2.zip -d ./wildfly-10.1.0.Final/modules
 ----
 +
 . Start WildFly
