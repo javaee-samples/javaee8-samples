@@ -3,10 +3,9 @@
 <infinispan xmlns="urn:infinispan:config:9.0">
     <cache-container name="defaultCacheContainer" default-cache="defaultCache">
         <local-cache name="defaultCache">
-            <!-- deprecated since 9.0, use memory configuration -->
-            <!--<eviction strategy="LRU" size="2"/>-->
+            <!-- since infinispan-9.0 memory configuration should be used -->
             <memory>
-                <object size="2"/>
+                <off-heap eviction="COUNT" size="2"/>
             </memory>
         </local-cache>
     </cache-container>

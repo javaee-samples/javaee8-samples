@@ -8,5 +8,5 @@
         <relativePath>../pom.xml</relativePath>        
     </parent>
 
-    <artifactId>infinispan-max-entries</artifactId>
+    <artifactId>infinispan-eviction</artifactId>
 </project>

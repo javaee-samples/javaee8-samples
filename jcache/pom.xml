@@ -32,7 +32,7 @@
         <module>configure-cache-filter</module>
         <module>configure-cache-store-by</module>
         <module>runtime-cache-types</module>
-        <module>infinispan-max-entries</module>
+        <module>infinispan-eviction</module>
         <module>infinispan-externalizer</module>
     </modules>
 

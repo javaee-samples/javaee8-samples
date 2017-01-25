@@ -1,4 +1,4 @@
-package org.javaee8.jcache.configuration;
+package org.javaee8.jcache.infinispan.eviction;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -7,6 +7,8 @@ import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
 import java.net.URI;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -37,5 +39,14 @@ public class KeyValueService<K,V> {
     public V get(K key) {
         Cache<K, V> cache = cacheManager.getCache(CACHE_NAME);
         return cache.get(key);
+    }
+
+    public Set<K> getKeys() {
+        Cache<K, V> cache = cacheManager.getCache(CACHE_NAME);
+        Set<K> keys = new HashSet<>();
+        for (Cache.Entry<K, V> entry : cache) {
+            keys.add(entry.getKey());
+        }
+        return keys;
     }
 }
