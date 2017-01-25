@@ -14,18 +14,18 @@ Running the tests
 ----
 curl -L http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip -o wildfly-10.1.0.Final.zip
 ----
-. Download Weld 3.0.0.Beta1 as a patch for WildFly 10.1
+. Download Weld 3.0.0.CR1 as a patch for WildFly 10.1
 +
 [source, text]
 ----
-curl -L http://download.jboss.org/weld/3.0.0.Beta1/wildfly-10.1.0.Final-weld-3.0.0.Beta1-patch.zip -o wildfly-10.1.0.Final-weld-3.0.0.Beta1-patch.zip
+curl -L http://download.jboss.org/weld/3.0.0.CR1/wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip -o wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip
 ----
 +
 . Apply the patch
 +
 [source, text]
 ----
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --command="patch apply ./wildfly-10.1.0.Final-weld-3.0.0.Beta1-patch.zip"
+./wildfly-10.1.0.Final/bin/jboss-cli.sh --command="patch apply ./wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip"
 {
     "outcome" : "success",
     "result" : {}
