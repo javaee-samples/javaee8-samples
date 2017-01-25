@@ -1,4 +1,4 @@
-package org.javaee8.jcache.configuration;
+package org.javaee8.jcache.infinispan.externalize;
 
 import org.infinispan.commons.marshall.AdvancedExternalizer;
 

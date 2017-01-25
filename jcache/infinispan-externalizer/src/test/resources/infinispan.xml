@@ -3,7 +3,7 @@
 <infinispan xmlns="urn:infinispan:config:9.0">
     <cache-container name="defaultCacheContainer" default-cache="defaultCache">
         <serialization>
-            <advanced-externalizer class="org.javaee8.jcache.configuration.MyValueExternalizer"/>
+            <advanced-externalizer class="org.javaee8.jcache.infinispan.externalize.MyValueExternalizer"/>
         </serialization>
         <local-cache name="defaultCache">
             <!-- deprecated since 9.0, use memory configuration -->
