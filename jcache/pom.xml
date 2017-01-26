@@ -34,6 +34,7 @@
         <module>runtime-cache-types</module>
         <module>infinispan-eviction</module>
         <module>infinispan-externalizer</module>
+        <module>infinispan-transaction-mode</module>
     </modules>
 
     <dependencyManagement>
