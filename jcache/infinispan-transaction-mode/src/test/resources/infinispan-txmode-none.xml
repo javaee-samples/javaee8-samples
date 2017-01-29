@@ -6,7 +6,8 @@
 
     <cache-container name="defaultCacheContainer" default-cache="defaultCache">
         <local-cache name="defaultCache">
-            <transaction mode="NON_XA"/>
+            <!-- by default in non transactional cache -->
+            <transaction mode="NONE"/>
         </local-cache>
     </cache-container>
 

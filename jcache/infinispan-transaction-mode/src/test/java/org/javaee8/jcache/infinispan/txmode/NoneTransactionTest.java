@@ -1,4 +1,4 @@
-package org.javaee8.jcache.configuration;
+package org.javaee8.jcache.infinispan.txmode;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -12,19 +12,18 @@ import javax.inject.Inject;
 import javax.transaction.UserTransaction;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 
 /**
  * @author Radim Hanus
  */
 @RunWith(Arquillian.class)
-public class KeyValueServiceTest {
+public class NoneTransactionTest {
     @Deployment
     public static Archive<?> deploy() {
         return ShrinkWrap.create(WebArchive.class)
                 .addClasses(KeyValueService.class)
-                .addAsResource("infinispan.xml", "META-INF/infinispan.xml")
+                .addAsResource("infinispan-txmode-none.xml", "META-INF/infinispan.xml")
                 .addAsWebInfResource("beans.xml")
                 .addAsWebInfResource("jboss-deployment-structure.xml");
     }
@@ -41,6 +40,7 @@ public class KeyValueServiceTest {
         service.put("JSR365", "CDI 2.0");
         transaction.commit();
 
+        // no matter of transaction result entries should be available
         assertEquals("JCACHE", service.get("JSR107"));
         assertEquals("CDI 2.0", service.get("JSR365"));
 
@@ -49,7 +49,8 @@ public class KeyValueServiceTest {
         service.put("JSR371", "MVC 1.0");
         transaction.rollback();
 
-        assertNull(service.get("JSR367"));
-        assertNull(service.get("JSR371"));
+        // no matter of transaction result entries should be available
+        assertEquals("JSON-B", service.get("JSR367"));
+        assertEquals("MVC 1.0", service.get("JSR371"));
     }
 }
