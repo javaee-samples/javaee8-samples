@@ -35,6 +35,7 @@
         <module>infinispan-eviction</module>
         <module>infinispan-externalizer</module>
         <module>infinispan-transaction-mode</module>
+        <module>infinispan-transaction-isolation</module>
     </modules>
 
     <dependencyManagement>
