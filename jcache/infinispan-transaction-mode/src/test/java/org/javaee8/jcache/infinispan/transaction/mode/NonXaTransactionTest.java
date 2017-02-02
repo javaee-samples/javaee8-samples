@@ -1,4 +1,4 @@
-package org.javaee8.jcache.infinispan.txmode;
+package org.javaee8.jcache.infinispan.transaction.mode;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

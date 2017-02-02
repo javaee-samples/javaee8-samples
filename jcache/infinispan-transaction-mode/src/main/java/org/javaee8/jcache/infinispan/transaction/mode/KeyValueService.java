@@ -1,4 +1,4 @@
-package org.javaee8.jcache.infinispan.txmode;
+package org.javaee8.jcache.infinispan.transaction.mode;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
