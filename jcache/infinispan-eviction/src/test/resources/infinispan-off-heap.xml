@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan xmlns="urn:infinispan:config:9.0">
+    <cache-container name="defaultCacheContainer" default-cache="defaultCache">
+        <local-cache name="defaultCache">
+            <!-- since infinispan-9.0 memory configuration should be used -->
+            <memory>
+                <off-heap eviction="COUNT" size="2"/>
+            </memory>
+        </local-cache>
+    </cache-container>
+</infinispan>

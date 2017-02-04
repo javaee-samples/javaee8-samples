@@ -1,30 +1,55 @@
 Java EE 8 Samples
-=================
+-----------------
+Covered JSRs
+~~~~~~~~~~~~
+* JSR 365: CDI 2.0
+* JSR 107: JCACHE
+* JSR 367: JSON-B
 
-. Download http://download.jboss.org/wildfly/8.2.0.Final/wildfly-8.2.0.Final.zip[WildFly 8.2.0] and unzip
-. Download Weld3 Alpha 3
+Running the tests
+~~~~~~~~~~~~~~~~~
+. Download WildFly 10.1 and unzip it
 +
 [source, text]
 ----
-curl -L -o weld3-alpha3-patch-wildfly8.2.zip http://sourceforge.net/projects/jboss/files/Weld/3.0.0.Alpha3/wildfly-8.2.0.Final-weld-3.0.0.Alpha3-patch.zip/download
+curl -L http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip -o wildfly-10.1.0.Final.zip
+----
+. Download Weld 3.0.0.CR1 as a patch for WildFly 10.1
++
+[source, text]
+----
+curl -L http://download.jboss.org/weld/3.0.0.CR1/wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip -o wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip
 ----
 +
 . Apply the patch
 +
 [source, text]
 ----
-./wildfly-8.2.0.Final/bin/jboss-cli.sh --command="patch apply ./weld3-alpha3-patch-wildfly8.2.zip"
+./wildfly-10.1.0.Final/bin/jboss-cli.sh --command="patch apply ./wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip"
 {
     "outcome" : "success",
     "result" : {}
 }
 ----
 +
+. Download Infinispan 9.0.0.Beta2 packaged modules for deploying in WildFly
++
+[source, text]
+----
+curl -L http://downloads.jboss.org/infinispan/9.0.0.Beta2/infinispan-wildfly-modules-9.0.0.Beta2.zip -o infinispan-wildfly-modules-9.0.0.Beta2.zip
+----
+. Unzip and copy modules
++
+[source, text]
+----
+unzip ./infinispan-wildfly-modules-9.0.0.Beta2.zip -d ./wildfly-10.1.0.Final/modules
+----
++
 . Start WildFly
 +
 [source, text]
 ----
-./wildfly-8.2.0.Final/bin/standalone.sh
+./wildfly-10.1.0.Final/bin/standalone.sh
 ----
 +
 . Run tests

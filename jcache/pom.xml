@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.javaee8</groupId>
+        <artifactId>javaee8-samples</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.javaee8.jcache</groupId>
+    <artifactId>jcache-samples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>JSR 107: JCACHE Samples</name>
+
+    <properties>
+        <!--<version.infinispan>9.0.0.Beta1</version.infinispan>-->
+        <version.infinispan>8.2.4.Final</version.infinispan>
+    </properties>
+
+    <modules>
+        <module>annotation-cache-result</module>
+        <module>annotation-cache-put</module>
+        <module>annotation-cache-remove</module>
+        <module>annotation-cache-remove-all</module>
+        <module>configure-cache-expiry</module>
+        <module>configure-cache-loaders</module>
+        <module>configure-cache-listener</module>
+        <module>configure-cache-filter</module>
+        <module>configure-cache-store-by</module>
+        <module>runtime-cache-types</module>
+        <module>infinispan-eviction</module>
+        <module>infinispan-externalizer</module>
+        <module>infinispan-transaction-mode</module>
+        <module>infinispan-transaction-isolation</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.infinispan</groupId>
+                <artifactId>infinispan-bom</artifactId>
+                <version>${version.infinispan}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

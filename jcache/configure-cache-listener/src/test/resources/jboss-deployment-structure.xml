@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.3">
+    <deployment>
+        <dependencies>
+            <module name="org.infinispan.cdi.embedded" slot="ispn-9.0" services="import"/>
+            <module name="org.infinispan.jcache" slot="ispn-9.0" services="import"/>
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>

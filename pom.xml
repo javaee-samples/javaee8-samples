@@ -11,6 +11,8 @@
     <properties>
         <java.min.version>1.8</java.min.version>
         <maven.min.version>3.0.0</maven.min.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Plugin versions -->
         <plugin.enforcer.version>1.3.1</plugin.enforcer.version>
@@ -23,6 +25,8 @@
 
     <modules>
         <module>cdi</module>
+        <module>jcache</module>
+        <module>jsonb</module>
     </modules>
 
     <dependencyManagement>
@@ -30,7 +34,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.5.Final</version>
+                <version>1.1.12.Final</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -38,28 +42,97 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- When available use Java EE 8 API exclusively -->
+<!--
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>8.0</version>
             <scope>provided</scope>
         </dependency>
-        
+-->
+
+        <!-- Untouched JSR -->
         <dependency>
-            <groupId>org.jboss.weld</groupId>
-            <artifactId>weld-api</artifactId>
-            <version>3.0.Alpha3</version>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.interceptor</groupId>
+            <artifactId>javax.interceptor-api</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise.concurrent</groupId>
+            <artifactId>javax.enterprise.concurrent-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Upgraded JSR 250: Common annotations -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- New JSR 365: CDI 2.0  -->
+        <!-- not a part of wildfly-10.1 but should be installed from a cdi/weld wildfly module -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>2.0.Beta1</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.el</groupId>
+                    <artifactId>javax.el-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.interceptor</groupId>
+                    <artifactId>javax.interceptor-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- New JSR 107: JCACHE  -->
+        <!-- not a part of wildfly-10.1 but should be installed from a jcache/infinispan wildfly module -->
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
 
         <!-- Test dependencies which can be used in sub-modules -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
@@ -89,26 +162,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.17</version>
-                <executions>
-                    <execution>
-                        <id>default-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java.min.version}</source>
+                    <target>${java.min.version}</target>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.17</version>
+                <version>2.19.1</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <linkXRef>true</linkXRef>
@@ -117,18 +180,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.0.0</version>
+                <configuration>
+                    <attachClasses>true</attachClasses>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <configuration>
                     <rules>
                         <requireMavenVersion>
-                            <message>At least Maven in version ${maven.min.version} is required.</message>
+                            <message>At least Maven in version ${maven.min.version} is
+                                required.</message>
                             <version>${maven.min.version}</version>
                         </requireMavenVersion>
                         <requireJavaVersion>
-                            <message>At least a JDK in version ${java.min.version} is required.</message>
+                            <message>At least a JDK in version ${java.min.version} is
+                                required.</message>
                             <version>${java.min.version}</version>
                         </requireJavaVersion>
                     </rules>
@@ -163,7 +232,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.18</version>
+                <version>2.19.1</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <linkXRef>true</linkXRef>
@@ -180,34 +249,58 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
+                <!-- Needed for websocket tests that use ContainerProvider.getWebSocketContainer()
+                     to connect from a the client to the websocket server.
+                -->
+<!--
                 <dependency>
                     <groupId>io.undertow</groupId>
                     <artifactId>undertow-websockets-jsr</artifactId>
-                    <version>1.0.0.Beta33</version>
+                    <version>1.4.0.Final</version>
                     <scope>test</scope>
                 </dependency>
-<!--                <dependency>
+-->
+                <!-- Needed for jaxrs tests that use ClientBuilder to connect from a client
+                     to the JAX-RS server.
+                -->
+<!--
+                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
-                    <version>3.0.10.Final</version>
+                    <version>3.0.19.Final</version>
                     <scope>test</scope>
                 </dependency>
+-->
+
+                <!-- Without this exception will be thrown about missing tracef method -->
+                <dependency>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging</artifactId>
+                    <version>3.3.0.Final</version>
+                    <scope>test</scope>
+                </dependency>
+<!--
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-jaxb-provider</artifactId>
-                    <version>3.0.10.Final</version>
+                    <version>3.0.19.Final</version>
                     <scope>test</scope>
                 </dependency>
+-->
+<!--
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-json-p-provider</artifactId>
-                    <version>3.0.10.Final</version>
+                    <version>3.0.19.Final</version>
                     <scope>test</scope>
-                </dependency>-->
+                </dependency>
+-->
+
+                <!-- The actual Arquillian container (server connector) -->
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>8.2.0.Final</version>
+                    <version>2.0.0.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
