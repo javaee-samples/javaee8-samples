@@ -1,10 +1,12 @@
 package org.javaee8.cdi.events.priority;
 
+import static javax.interceptor.Interceptor.Priority.APPLICATION;
+
+import java.io.Serializable;
+
+import javax.annotation.Priority;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
-import java.io.Serializable;
-import javax.interceptor.Interceptor;
-import org.jboss.weld.experimental.Priority;
 
 /**
  * @author Radim Hanus
@@ -13,13 +15,15 @@ import org.jboss.weld.experimental.Priority;
 @SessionScoped
 public class GreetingReceiver implements EventReceiver, Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     private String greet = "Willkommen";
 
     /**
      * Lower priority
      * @param greet 
      */
-    void receive(@Observes @Priority(Interceptor.Priority.APPLICATION + 200) String greet) {
+    void receive(@Observes @Priority(APPLICATION + 200) String greet) {
         this.greet += greet + "2";
     }
 
@@ -27,7 +31,7 @@ public class GreetingReceiver implements EventReceiver, Serializable {
      * Higher priority
      * @param greet 
      */
-    void receive2(@Observes @Priority(Interceptor.Priority.APPLICATION) String greet) {
+    void receive2(@Observes @Priority(APPLICATION) String greet) {
         this.greet = greet + "1";
     }
 
