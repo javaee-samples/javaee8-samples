@@ -7,7 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.javaee7</groupId>
+    <groupId>org.javaee8</groupId>
     <artifactId>servlet-mapping</artifactId>
     <packaging>war</packaging>
     <name>Java EE 8 Sample: servlet - mapping</name>

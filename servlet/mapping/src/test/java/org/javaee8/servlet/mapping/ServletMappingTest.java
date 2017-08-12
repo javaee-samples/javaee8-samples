@@ -1,4 +1,4 @@
-package org.javaee7.servlet.mapping;
+package org.javaee8.servlet.mapping;
 
 import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
 import static org.junit.Assert.assertEquals;
