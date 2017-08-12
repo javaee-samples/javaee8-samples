@@ -69,6 +69,7 @@
      -->
     <modules>
       <module>test-utils</module>
+      <module>servlet</module>
       <module>cdi</module>
     </modules>
 
@@ -102,6 +103,12 @@
              
              (Since not released yet, temporarily uses constitute spec APIs)
          -->
+         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0-b07</version>
+        </dependency>
+         
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
@@ -424,41 +431,6 @@
             <id>payara-remote</id>
             
             <dependencies>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.json</artifactId>
-                    <version>1.0.4</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <!-- WebSocket client dependencies -->
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-container-grizzly-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-   
-   				<!-- JAX-RS client API dependencies -->
-                <dependency>
-                    <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-json-jackson</artifactId>
-                    <version>2.26-b09</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-json-processing</artifactId>
-                    <version>2.26-b09</version>
-                    <scope>test</scope>
-                </dependency>
-                
                 <!-- The actual Arquillian connector -->
                 <dependency>
                     <groupId>org.omnifaces</groupId>
@@ -478,16 +450,6 @@
                         </configuration>
                     </plugin>
                    </plugins>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/resources-glassfish-remote</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                </testResources>
             </build>
         </profile>
         
