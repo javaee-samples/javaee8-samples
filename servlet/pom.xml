@@ -10,7 +10,7 @@
     <artifactId>servlet</artifactId>
     <packaging>pom</packaging>
     
-    <name>Java EE 8 Sample: servlet</name>
+    <name>Java EE 8 Samples: Servlet</name>
 
     <modules>
         	<module>mapping</module>

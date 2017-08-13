@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     
-    <name>Java EE 8 Sample: javaee8-samples</name>
+    <name>Java EE 8 Samples: root</name>
 
     <properties>
         <java.min.version>1.8</java.min.version>

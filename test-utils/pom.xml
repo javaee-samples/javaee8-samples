@@ -10,7 +10,7 @@
     </parent>
     
     <artifactId>test-utils</artifactId>
-    <name>Java EE 8 Samples: javaee8-samples - test-utils</name>
+    <name>Java EE 8 Samples: test-utils</name>
 
     <dependencies>
         <dependency>

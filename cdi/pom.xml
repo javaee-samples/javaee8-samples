@@ -10,9 +10,10 @@
     <groupId>org.javaee8.cdi</groupId>
     <artifactId>cdi-samples</artifactId>
     <packaging>pom</packaging>
-    <name>Java EE 8 CDI Samples</name>
+    <name>Java EE 8 Samples: CDI</name>
 
     <modules>
+        <module>interception-factory</module>
         <module>events-priority</module>
     </modules>
     
