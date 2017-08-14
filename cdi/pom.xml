@@ -13,6 +13,7 @@
     <name>Java EE 8 Samples: CDI</name>
 
     <modules>
+        <module>dynamic-bean</module>
         <module>events-async</module>
         <module>events-priority</module>
         <module>interception-factory</module>
