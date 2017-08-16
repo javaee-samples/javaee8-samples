@@ -64,12 +64,13 @@
 
 
     <!-- The Java EE 8 specs that this project is providing samples for.
-         Each spec is represented by one module. "test-utils" and "util"
-         are helper modules.
+         Each spec is represented by one module. "test-utils" is a helper module.
      -->
     <modules>
       <module>test-utils</module>
+      
       <module>servlet</module>
+      <module>jsf</module>
       <module>cdi</module>
     </modules>
 
@@ -107,6 +108,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.0-b07</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.3</version>
         </dependency>
          
         <dependency>
