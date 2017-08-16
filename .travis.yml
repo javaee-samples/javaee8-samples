@@ -5,6 +5,7 @@ jdk:
 env:
   - TESTFOLDER=cdi
   - TESTFOLDER=servlet
+  - TESTFOLDER=jsf
 
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
