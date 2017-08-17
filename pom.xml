@@ -73,6 +73,7 @@
       <module>jsf</module>
       <module>cdi</module>
       <module>jpa</module>
+      <module>jsonb</module>
     </modules>
 
     <dependencyManagement>
@@ -128,6 +129,20 @@
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
             <version>2.2.0-RC1</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.json.bind</groupId>
+            <artifactId>javax.json.bind-api</artifactId>
+            <version>1.0</version>
             <scope>provided</scope>
         </dependency>
         
