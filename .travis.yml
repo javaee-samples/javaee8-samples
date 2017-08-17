@@ -6,6 +6,7 @@ env:
   - TESTFOLDER=cdi
   - TESTFOLDER=servlet
   - TESTFOLDER=jsf
+  - TESTFOLDER=jsonb
 
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
