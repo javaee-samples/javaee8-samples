@@ -7,7 +7,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 /**
- * REST controller for managing Person.
  * 
  * @author Gaurav Gupta
  */
@@ -24,11 +23,13 @@ public class PersonController {
     public List<Person> getAllPeople() {
         Person person1 = new Person();
         person1.setName("Ondrej");
-        person1.setAddress("xyz");
+        person1.setAddress("Prague");
+        person1.setPin("Mihalyi");
 
         Person person2 = new Person();
         person2.setName("Mert");
-        person2.setAddress("pqrs");
+        person2.setAddress("Turkey");
+        person2.setPin("Caliskan");
         
         return Arrays.asList(person1, person2);
     }

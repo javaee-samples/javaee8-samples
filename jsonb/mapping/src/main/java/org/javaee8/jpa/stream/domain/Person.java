@@ -2,6 +2,7 @@ package org.javaee8.jpa.stream.domain;
 
 import java.io.Serializable;
 import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 
 /**
  * 
@@ -18,6 +19,13 @@ public class Person implements Serializable {
     private String name;
 
     private String address;
+    
+    /**
+     * Property 'pin' will be ignored by JSON Binding engine
+     */
+    @JsonbTransient
+    private String pin;
+    
 
     public String getName() {
         return this.name;
@@ -33,6 +41,14 @@ public class Person implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+    
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
 }

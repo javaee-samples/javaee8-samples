@@ -55,7 +55,7 @@ public class PersonControllerTest {
         // Get all the people
         Response response = target.path(RESOURCE_PATH).request().get();
         String val = jsonb.toJson(response.readEntity(List.class));
-        assertEquals("[{\"address\":\"xyz\",\"pname\":\"Ondrej\"},{\"address\":\"pqrs\",\"pname\":\"Mert\"}]", val);
+        assertEquals("[{\"address\":\"Prague\",\"pname\":\"Ondrej\"},{\"address\":\"Turkey\",\"pname\":\"Mert\"}]", val);
     }
 
 }
