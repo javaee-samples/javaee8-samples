@@ -5,6 +5,7 @@ jdk:
 env:
   - TESTFOLDER=cdi
   - TESTFOLDER=servlet
+  - TESTFOLDER=jpa
   - TESTFOLDER=jsf
   - TESTFOLDER=jsonb
 

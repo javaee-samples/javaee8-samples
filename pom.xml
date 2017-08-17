@@ -67,12 +67,13 @@
          Each spec is represented by one module. "test-utils" is a helper module.
      -->
     <modules>
-        <module>test-utils</module>
-        <module>servlet</module>
-        <module>jsf</module>
-        <module>cdi</module>
-        <module>jsonb</module>
-        <module>validation</module>
+      <module>test-utils</module>
+      <module>servlet</module>
+      <module>jsf</module>
+      <module>cdi</module>
+      <module>jpa</module>
+      <module>jsonb</module>
+      <module>validation</module>  
     </modules>
 
     <dependencyManagement>
@@ -121,6 +122,13 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.2.0-RC1</version>
             <scope>provided</scope>
         </dependency>
         
