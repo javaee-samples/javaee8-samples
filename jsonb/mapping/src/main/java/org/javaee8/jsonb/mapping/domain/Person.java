@@ -1,4 +1,4 @@
-package org.javaee8.jpa.stream.domain;
+package org.javaee8.jsonb.mapping.domain;
 
 import java.io.Serializable;
 import javax.json.bind.annotation.JsonbProperty;

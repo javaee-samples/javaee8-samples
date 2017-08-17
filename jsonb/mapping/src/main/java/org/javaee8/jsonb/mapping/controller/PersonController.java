@@ -1,6 +1,6 @@
-package org.javaee8.jpa.stream.controller;
+package org.javaee8.jsonb.mapping.controller;
 
-import org.javaee8.jpa.stream.domain.Person;
+import org.javaee8.jsonb.mapping.domain.Person;
 import java.util.Arrays;
 import java.util.List;
 import javax.ws.rs.GET;

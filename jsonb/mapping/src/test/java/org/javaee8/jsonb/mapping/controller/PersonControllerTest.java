@@ -1,5 +1,7 @@
-package org.javaee8.jpa.stream.controller;
+package org.javaee8.jsonb.mapping.controller;
 
+import org.javaee8.jsonb.mapping.controller.ApplicationConfig;
+import org.javaee8.jsonb.mapping.controller.PersonController;
 import java.net.URI;
 import java.net.URL;
 import java.util.List;
@@ -9,7 +11,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import org.javaee8.jpa.stream.domain.Person;
+import org.javaee8.jsonb.mapping.domain.Person;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;

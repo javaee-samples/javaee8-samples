@@ -1,4 +1,4 @@
-package org.javaee8.jpa.stream.controller;
+package org.javaee8.jsonb.mapping.controller;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class ApplicationConfig extends Application {
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(org.javaee8.jpa.stream.controller.PersonController.class);
+        resources.add(org.javaee8.jsonb.mapping.controller.PersonController.class);
     }
     
 }
