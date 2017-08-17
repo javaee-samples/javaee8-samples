@@ -67,12 +67,12 @@
          Each spec is represented by one module. "test-utils" is a helper module.
      -->
     <modules>
-      <module>test-utils</module>
-      
-      <module>servlet</module>
-      <module>jsf</module>
-      <module>cdi</module>
-      <module>jsonb</module>
+        <module>test-utils</module>
+        <module>servlet</module>
+        <module>jsf</module>
+        <module>cdi</module>
+        <module>jsonb</module>
+        <module>validation</module>
     </modules>
 
     <dependencyManagement>
