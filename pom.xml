@@ -72,6 +72,7 @@
       <module>servlet</module>
       <module>jsf</module>
       <module>cdi</module>
+      <module>jsonb</module>
     </modules>
 
     <dependencyManagement>
@@ -120,6 +121,20 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.json.bind</groupId>
+            <artifactId>javax.json.bind-api</artifactId>
+            <version>1.0</version>
             <scope>provided</scope>
         </dependency>
         
