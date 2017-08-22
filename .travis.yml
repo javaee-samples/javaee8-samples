@@ -4,6 +4,7 @@ jdk:
   - oraclejdk8
 env:
   - TESTFOLDER=cdi
+  - TESTFOLDER=security
   - TESTFOLDER=servlet
   - TESTFOLDER=jpa
   - TESTFOLDER=jsf
