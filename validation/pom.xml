@@ -17,16 +17,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.0.1.Final</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.javaee8</groupId>
             <artifactId>test-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-
 </project>

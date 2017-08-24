@@ -10,4 +10,11 @@
     <artifactId>constraints</artifactId>
     <name>Java EE 8 Samples: Bean Validation 2: Support for java.time API</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.0.Final</version>
+        </dependency>
+    </dependencies>
 </project>
