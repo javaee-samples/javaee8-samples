@@ -92,13 +92,13 @@
      -->
     <modules>
       <module>test-utils</module>
-      
       <module>servlet</module>
       <module>security</module>
       <module>jsf</module>
       <module>cdi</module>
       <module>jpa</module>
       <module>jsonb</module>
+      <module>validation</module>  
     </modules>
 
     <dependencyManagement>

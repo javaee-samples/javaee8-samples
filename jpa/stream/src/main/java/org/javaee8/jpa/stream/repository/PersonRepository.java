@@ -13,13 +13,13 @@ import org.javaee8.jpa.stream.domain.Person;
  */
 public class PersonRepository {
 
-    @PersistenceContext(unitName = "DEFAULT_PU")
-    private EntityManager em;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public Stream<Person> findAll() {
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(Person.class));
-        return em.createQuery(cq).getResultStream();
+        CriteriaQuery criteriaQuery = entityManager.getCriteriaBuilder().createQuery();
+        criteriaQuery.select(criteriaQuery.from(Person.class));
+        return entityManager.createQuery(criteriaQuery).getResultStream();
     }
 
 }

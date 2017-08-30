@@ -9,6 +9,7 @@ env:
   - TESTFOLDER=jpa
   - TESTFOLDER=jsf
   - TESTFOLDER=jsonb
+  - TESTFOLDER=validation
 
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 

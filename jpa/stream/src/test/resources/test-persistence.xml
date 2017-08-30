@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="DEFAULT_PU" transaction-type="JTA">
-    <jta-data-source>java:comp/DefaultDataSource</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+  
+    <!-- 
+        This defines the persistence unit from which the entity manager is used in org.javaee8.jpa.stream.repository.PersonRepository
+        
+        Note that this relies on the defaults; in Java EE the transaction type defaults to JTA and the data source defaults to the platform default data source
+    
+    -->
+    
+    <persistence-unit name="TEST_PU">
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/insert.sql"/>
