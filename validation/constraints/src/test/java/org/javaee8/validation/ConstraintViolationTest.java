@@ -28,6 +28,16 @@ import static org.junit.Assert.assertThat;
 public class ConstraintViolationTest {
 
     private Validator validator;
+    
+    @Deployment
+    public static WebArchive deploy() {
+        return create(WebArchive.class)
+                .addAsLibraries(
+                        create(JavaArchive.class).addClasses(Person.class,
+                                Admin.class,
+                                Country.class,
+                                Address.class));
+    }
 
     @Before
     public void setUpValidator() {
@@ -42,16 +52,6 @@ public class ConstraintViolationTest {
                 .getValidator();
     }
 
-    @Deployment
-    public static WebArchive deploy() {
-        return create(WebArchive.class)
-                .addAsLibraries(
-                        create(JavaArchive.class).addClasses(Person.class,
-                                Admin.class,
-                                Country.class,
-                                Address.class));
-    }
-
     @Test
     public void validatingBirthDateFailsWithViolation() {
         Person person = new Person();
@@ -62,7 +62,7 @@ public class ConstraintViolationTest {
         assertThat(violations, is(not(nullValue())));
         assertThat(violations.size(), is(1));
         assertThat(violations.iterator().next().getMessage(),
-                is("must be in the past"));
+                is("must be a past date"));
     }
 
     public void validatingMarriageAnniversaryDateFailsWithViolation() {

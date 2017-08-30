@@ -18,7 +18,7 @@ import java.util.Optional;
  */
 class Person {
 
-    @Past
+    @Past(message = "must be a past date")
     private Year yearOfBirth;
 
     private Optional<@Past LocalDate> marriageAnniversary;
