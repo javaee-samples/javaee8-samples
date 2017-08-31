@@ -10,18 +10,4 @@
     <artifactId>events-async</artifactId>
     <name>Java EE 8 Samples: CDI - Events Async</name>
     
-    <dependencies>
-         <dependency>
-            <groupId>org.jboss.weld</groupId>
-            <artifactId>weld-osgi-bundle</artifactId>
-            <version>3.0.0.Final</version>
-            <scope>provided</scope>
-             <exclusions>
-                    <exclusion>
-                        <groupId>org.jboss.classfilewriter</groupId>
-                        <artifactId>jboss-classfilewriter</artifactId>
-                    </exclusion>
-                </exclusions>
-        </dependency>
-    </dependencies>
 </project>
