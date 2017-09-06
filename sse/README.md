@@ -5,4 +5,3 @@ The [JSR 370](https://www.jcp.org/en/jsr/detail?id=370) specifies the JavaTM API
 ## Samples ##
 
  - producer
- - consumer
