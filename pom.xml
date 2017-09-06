@@ -385,7 +385,7 @@
                 <dependency>
                     <groupId>org.omnifaces</groupId>
                     <artifactId>arquillian-payara-server-4-managed</artifactId> 
-                    <version>1.0-beta-SNAPSHOT</version> 
+                    <version>1.0-beta2-SNAPSHOT</version> 
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -495,11 +495,12 @@
             <id>payara-remote</id>
             
             <dependencies>
+            
                 <!-- The actual Arquillian connector -->
                 <dependency>
                     <groupId>org.omnifaces</groupId>
                     <artifactId>arquillian-payara-server-4-remote</artifactId> 
-                    <version>1.0-beta-SNAPSHOT</version> 
+                    <version>1.0-beta2-SNAPSHOT</version> 
                     <scope>test</scope>
                 </dependency>
             </dependencies>
