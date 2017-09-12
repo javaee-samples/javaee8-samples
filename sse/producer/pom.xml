@@ -11,12 +11,19 @@
     <packaging>war</packaging>
     <name>Java EE 8 Samples: Server Sent Events [Producer]</name>
     <dependencies>
-        <dependency>
-            <groupId>javax.ejb</groupId>
-            <artifactId>javax.ejb-api</artifactId>
-            <version>3.2</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
+    <!-- JSON-B API -->
+    <dependency>
+        <groupId>javax.json.bind</groupId>
+        <artifactId>javax.json.bind-api</artifactId>
+        <version>1.0.0-RC2</version>
+    </dependency>
+
+    <!-- Yasson (JSON-B RI) -->
+    <dependency>
+        <groupId>org.eclipse</groupId>
+        <artifactId>yasson</artifactId>
+        <version>1.0.0-RC1</version>
+        <scope>runtime</scope>
+    </dependency>
     </dependencies>
 </project>

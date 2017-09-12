@@ -2,6 +2,8 @@ package org.javaee8.sse.producer;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -10,14 +12,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.sse.Sse;
 import javax.ws.rs.sse.SseBroadcaster;
 import javax.ws.rs.sse.SseEventSink;
+import org.javaee8.sse.data.EventData;
 
 /**
  * @author Daniel Contreras
  */
-@Path("/")
+@Path("sse")
 @Singleton
 public class SseResource {
-
+    
     @Context
     private Sse sse;
 
@@ -25,34 +28,32 @@ public class SseResource {
 
     @PostConstruct
     public void init() {
-        System.out.println("1");
         this.sseBroadcaster = sse.newBroadcaster();
-        System.out.println("2");
     }
 
     @GET
     @Path("register")
     @Produces(MediaType.SERVER_SENT_EVENTS)
     public void register(@Context SseEventSink eventSink) {
-        System.out.println("3");
-        eventSink.send(sse.newEvent("welcome!"));
-        System.out.println("4");
+        
+        Jsonb jsonb = JsonbBuilder.create();
+
+        eventSink.send(sse.newEvent("INIT",new EventData("event:intialized").toString()));
+
         sseBroadcaster.register(eventSink);
-        System.out.println("5");
-        eventSink.send(sse.newEvent("event1"));
-        eventSink.send(sse.newEvent("event2"));
-        eventSink.send(sse.newEvent("event3"));
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
 
-            sseBroadcaster.broadcast(sse.newEvent("Repeated" + i));
+            sseBroadcaster.broadcast(sse.newEvent("EVENT",new EventData("event:"+i).toString()));
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        
+        eventSink.send(sse.newEvent("FINISH",new EventData("event:finished").toString()));
     }
-
+    
 }

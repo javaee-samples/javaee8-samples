@@ -3,6 +3,8 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
+
+@author Daniel Contreras
 -->
 <html>
     <head>
@@ -21,7 +23,7 @@ and open the template in the editor.
                         
             function start() {
 
-                var eventSource = new EventSource("rest/register");
+                var eventSource = new EventSource("rest/sse/register");
                 console.log(eventSource);
 
                 eventSource.onmessage = function (event) {

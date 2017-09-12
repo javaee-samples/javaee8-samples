@@ -12,8 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author daniel
  */
-@ApplicationPath(value = "rest")
-public class RestApplication extends Application{
+@ApplicationPath("rest")
+public class RestApplication extends Application {
 
-    
 }

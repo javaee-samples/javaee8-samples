@@ -4,6 +4,10 @@ import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Date;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -18,75 +22,81 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.sse.SseEventSource;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import org.javaee8.sse.data.EventData;
+import org.javaee8.sse.rest.RestApplication;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Daniel Contreras
  */
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class SseResourceTest {
-/*
+
     @ArquillianResource
     private URL base;
 
     private Client sseClient;
-    WebTarget target;
+    private WebTarget target;
 
-    @Deployment
+    SseEventSource eventSource;
+
+    @Deployment(testable = false)
     public static WebArchive createDeployment() {
         return create(WebArchive.class)
-                .addClass(SseResource.class);
+                .addClasses(RestApplication.class, SseResource.class, EventData.class, JsonbBuilder.class, Jsonb.class);
     }
 
     @Before
     public void setup() {
-        System.out.println("01");
         this.sseClient = ClientBuilder.newClient();
-        System.out.println("02");
+        this.target = this.sseClient.target(base + "rest/sse/register");
+        eventSource = SseEventSource.target(target).build();
+        System.out.println("SSE Event source created........");
     }
 
     @After
     public void teardown() {
-
+        eventSource.close();
+        System.out.println("Closed SSE Event source..");
+        sseClient.close();
+        System.out.println("Closed JAX-RS client..");
     }
+
+    String[] types = {"INIT", "EVENT", "FINISH"};
 
     @Test
     @RunAsClient
-    public void testClient() throws IOException {
-        System.out.println("Client");
-        System.out.println(base + "producer/register");
-       System.out.println(this.sseClient.getConfiguration().toString());
-    }
-    
-    @Test
-    public void testServer() throws IOException {
-        System.out.println("Server");
-        System.out.println(base + "producer/register");
-        //this.sseClient.target(base + "producer/register");
-        System.out.println(this.sseClient.getConfiguration().getProperties().toString());
-        System.out.println(this.sseClient.getConfiguration().getRuntimeType().toString());
-        System.out.println(this.sseClient.getConfiguration().getInstances().toArray().toString());
-        //this.sseClient.getHostnameVerifier();
+    public void testSSE() throws IOException {
 
-        System.out.println(base + "producer/register");
-        WebTarget target = sseClient.target(base + "producer/register");
-        System.out.println("1");
-        try (SseEventSource source = SseEventSource.target(target).build()) {
-            System.out.println("2");
-            source.register(System.out::println);
-            System.out.println("3");
-            source.open();
-            System.out.println("5");
-            Thread.sleep(500);      // Consume events for just 500 ms
+        Jsonb jsonb = JsonbBuilder.create();
 
+        System.out.println("SSE Client triggered in thread " + Thread.currentThread().getName());
+        try {
+            eventSource.register(
+                    (sseEvent)
+                    -> {
+                assertTrue(Arrays.asList(types).contains(sseEvent.getName()));
+                assertNotNull(sseEvent.readData());
+                EventData event = jsonb.fromJson(sseEvent.readData(), EventData.class);
+                assertThat(event.getTime(), instanceOf(Date.class));
+                assertNotNull(event.getId());
+                assertTrue(event.getComment().contains("event:"));
+                System.out.println("\nSSE Event received :: " + event.toString() +"\n");
+                
+            },
+                    (e) -> e.printStackTrace());
+
+            eventSource.open();
+            Thread.sleep(1500);
         } catch (Exception e) {
-
-            System.out.println("error!!!");
+            System.out.println("Error on SSE Test");
             System.out.println(e.getMessage());
-
         }
 
     }
-*/
+
 }
