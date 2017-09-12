@@ -1,0 +1,8 @@
+{
+    "name": "Andrew Pielage",
+    "age": "26",
+    "physicalAttributes": {
+        "hair": ["blond", "short"],
+        "height": "187cm"
+    }
+}
