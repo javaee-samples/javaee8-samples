@@ -9,4 +9,5 @@
     <groupId>org.javaee8.jsonp</groupId>
     <artifactId>merge</artifactId>
     <packaging>jar</packaging>
+    <name>Java EE 8 Samples: JSON-P - Merge</name>
 </project>

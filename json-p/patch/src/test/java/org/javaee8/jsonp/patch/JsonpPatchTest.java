@@ -1,4 +1,4 @@
-package org.javaee8.jsonp;
+package org.javaee8.jsonp.patch;
 
 import javax.json.Json;
 import javax.json.JsonException;
@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
 public class JsonpPatchTest {
 
     // Create a JsonObject with some values to be used in each test
-    private static JsonObject json = Json.createObjectBuilder()
+    private static final JsonObject json = Json.createObjectBuilder()
             .add("Wibbly", "Wobbly")
             .add("Replaced", false)
             .add("Lexicon", Json.createArrayBuilder()
