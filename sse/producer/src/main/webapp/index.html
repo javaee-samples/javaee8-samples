@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+@author Daniel Contreras
+-->
+<html>
+    <head>
+        <title>SSE</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <span id="foo"></span>
+
+        <br><br>
+        <button onclick="start()">Start</button>
+
+        <script>
+                        
+            function start() {
+
+                var eventSource = new EventSource("rest/sse/register");
+                console.log(eventSource);
+
+                eventSource.onmessage = function (event) {
+                    console.log(event)
+                    var el = document.getElementById("foo"); 
+                    el.innerHTML += event.data + "<br/>";
+                    el.scrollTop += 50;
+                };
+
+                eventSource.addEventListener('broadcast', function (event) {
+
+                    console.log(event)
+                    var el = document.getElementById("foo"); 
+                    el.innerHTML += event.data + "lt;br/&>";
+                    el.scrollTop += 50;
+
+                }, false);
+            }
+        </script>
+    </body>
+</html>

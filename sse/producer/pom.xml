@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"> <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.javaee8</groupId>
+        <artifactId>sse</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sse-producer</artifactId>
+    <packaging>war</packaging>
+    <name>Java EE 8 Samples: Server Sent Events [Producer]</name>
+    <dependencies>
+    <!-- JSON-B API -->
+    <dependency>
+        <groupId>javax.json.bind</groupId>
+        <artifactId>javax.json.bind-api</artifactId>
+        <version>1.0.0-RC2</version>
+    </dependency>
+
+    <!-- Yasson (JSON-B RI) -->
+    <dependency>
+        <groupId>org.eclipse</groupId>
+        <artifactId>yasson</artifactId>
+        <version>1.0.0-RC1</version>
+        <scope>runtime</scope>
+    </dependency>
+    </dependencies>
+</project>
