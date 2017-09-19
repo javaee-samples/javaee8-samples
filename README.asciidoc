@@ -3,11 +3,12 @@
 This workspace consists of Java EE 8 Samples and unit tests. They are categorized in different directories, one for each Technology/JSR.
 
 Some samples/tests have documentation, otherwise read the code. 
+
 ## How to run? ##
 
-Samples are tested on Payara, GlassFish and Tomcat using Arquillian. Arquillian used container profiles to start up and deploy tests to individual containers. 
+Samples are tested on Payara, GlassFish and Tomcat using Arquillian. Arquillian uses container profiles to start up and deploy tests to individual containers. 
 
-Only one container profile can be active at a given time otherwise there will be dependency conflicts.
+Only one container profile can be active at a given time, otherwise there will be dependency conflicts.
 
 These are the available container profiles:
 
