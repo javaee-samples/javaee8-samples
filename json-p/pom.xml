@@ -17,28 +17,11 @@
         <module>merge</module>
     </modules>
 
-    <properties>
-        <json.version>1.1</json.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.javaee8</groupId>
             <artifactId>test-utils</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.json</groupId>
-            <artifactId>javax.json-api</artifactId>
-            <version>${json.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.json</artifactId>
-            <version>${json.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
     
