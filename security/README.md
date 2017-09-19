@@ -5,5 +5,6 @@ The [JSR 375](https://jcp.org/en/jsr/detail?id=375) specifies the first version 
 ## Samples ##
 
  - dynamic-rememberme
+ - jwt
 
 
