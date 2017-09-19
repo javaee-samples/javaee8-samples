@@ -16,6 +16,7 @@
         <module>events-async</module>
         <module>events-priority</module>
         <module>interception-factory</module>
+        <module>qualified-lookup</module>
     </modules>
     
     <dependencies>
