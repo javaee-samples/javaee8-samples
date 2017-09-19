@@ -98,7 +98,8 @@
       <module>cdi</module>
       <module>jpa</module>
       <module>jsonb</module>
-      <module>validation</module>  
+      <module>validation</module>
+      <module>json-p</module>
     </modules>
 
     <dependencyManagement>
