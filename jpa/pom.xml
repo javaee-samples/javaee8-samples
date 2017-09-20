@@ -12,6 +12,7 @@
     <name>Java EE 8 Samples: JPA</name>
     
     <modules>
+        <module>dynamic-tx</module>
         <module>stream</module>
     </modules>
     
