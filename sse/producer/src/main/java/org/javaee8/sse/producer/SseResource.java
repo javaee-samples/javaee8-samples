@@ -1,7 +1,6 @@
 package org.javaee8.sse.producer;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
@@ -18,7 +17,6 @@ import org.javaee8.sse.data.EventData;
  * @author Daniel Contreras
  */
 @Path("sse")
-@Singleton
 public class SseResource {
     
     @Context

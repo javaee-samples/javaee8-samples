@@ -316,6 +316,14 @@
             
             <dependencies>
                 
+                <!-- Yasson (JSON-B RI) -->   
+                <dependency>
+                    <groupId>org.eclipse</groupId>
+                    <artifactId>yasson</artifactId>
+                    <version>1.0</version>
+                    <scope>runtime</scope>
+                </dependency>
+                
                 <!-- WebSocket client dependencies -->
                 <dependency>
                     <groupId>org.glassfish.tyrus</groupId>
