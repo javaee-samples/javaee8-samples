@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.javaee8.sse.data;
 
 import java.util.Date;
@@ -20,11 +15,9 @@ public class EventData {
     private String comment;
 
     public EventData() {
-        super();
     }
     
     public EventData(String comment) {
-        super();
         this.setTime(new Date());
         this.setId(UUID.randomUUID().toString());
         this.setComment(comment);
