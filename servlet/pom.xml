@@ -13,7 +13,8 @@
     <name>Java EE 8 Samples: Servlet</name>
 
     <modules>
-        	<module>mapping</module>
+        <module>mapping</module>
+        <module>servlet-push</module>
     </modules>
 
     <dependencies>
