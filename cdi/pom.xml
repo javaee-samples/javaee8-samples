@@ -17,6 +17,7 @@
         <module>events-priority</module>
         <module>interception-factory</module>
         <module>qualified-lookup</module>
+        <module>bean-discovery-modes</module>
     </modules>
     
     <dependencies>
