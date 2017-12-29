@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>org.javaee8</groupId>
     <artifactId>samples-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    
+
     <name>Java EE 8 Samples: root</name>
 
     <properties>
         <java.min.version>1.8</java.min.version>
         <maven.min.version>3.0.0</maven.min.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+
         <maven.test.skip>false</maven.test.skip>
         <skipTests>false</skipTests>
-        
+
         <skipEJB>${skipTests}</skipEJB>
         <skipCDI>${skipTests}</skipCDI>
         <skipJSF>${skipTests}</skipJSF>
         <skipJACC>${skipTests}</skipJACC>
-        
-        <!-- 
-            Application Server versions 
-            (these are downloaded and installed in these versions by Maven for the CI profiles)
-         -->
-        <payara.version>5.0.0.174-SNAPSHOT</payara.version>
+
+        <!-- Application Server versions (these are downloaded and installed 
+            in these versions by Maven for the CI profiles) -->
+        <payara.version>5.Beta1</payara.version>
         <glassfish.version>4.1.1</glassfish.version>
         <tomcat.version>8.5.6</tomcat.version>
     </properties>
-    
+
     <repositories>
         <repository>
             <id>central</id>
             <name>Central Repository</name>
-            
+
             <url>https://repo.maven.apache.org/maven2</url>
-            
+
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -49,9 +48,9 @@
         <repository>
             <id>ossrh</id>
             <name>Sonatype-snapshot</name>
-            
+
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            
+
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -60,8 +59,8 @@
                 <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
-        
-           <repository>
+
+        <repository>
             <id>jvnet-nexus-staging</id>
             <name>Java.net Staging Repositories</name>
             <url>https://maven.java.net/content/repositories/staging</url>
@@ -72,7 +71,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-        
+
         <repository>
             <id>jvnet-nexus-promoted</id>
             <name>Java.net Promoted Repositories</name>
@@ -87,20 +86,19 @@
     </repositories>
 
 
-    <!-- The Java EE 8 specs that this project is providing samples for.
-         Each spec is represented by one module. "test-utils" is a helper module.
-     -->
+    <!-- The Java EE 8 specs that this project is providing samples for. 
+        Each spec is represented by one module. "test-utils" is a helper module. -->
     <modules>
-      <module>test-utils</module>
-      <module>servlet</module>
-      <module>sse</module>
-      <module>security</module>
-      <module>jsf</module>
-      <module>cdi</module>
-      <module>jpa</module>
-      <module>jsonb</module>
-      <module>validation</module>
-      <module>json-p</module>
+        <module>test-utils</module>
+        <module>servlet</module>
+        <module>sse</module>
+        <module>security</module>
+        <module>jsf</module>
+        <module>cdi</module>
+        <module>jpa</module>
+        <module>jsonb</module>
+        <module>validation</module>
+        <module>json-p</module>
     </modules>
 
     <dependencyManagement>
@@ -108,14 +106,14 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.11.Final</version>
+                <version>1.2.0.Final</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-container-test-api</artifactId>
-                <version>1.1.13.Final</version>
+                <version>1.2.0.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -127,14 +125,20 @@
 
 
     <dependencies>
-    
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>8.0</version>
             <scope>provided</scope>
         </dependency>
-        
+
+
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
         <!-- Test dependencies which can be used in sub-modules -->
 
         <dependency>
@@ -191,7 +195,7 @@
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
             <artifactId>htmlunit</artifactId>
-            <version>2.27</version>
+            <version>2.28</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -217,17 +221,19 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
+
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>
                 <filtering>true</filtering>
             </testResource>
         </testResources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${java.min.version}</source>
                     <target>${java.min.version}</target>
@@ -236,7 +242,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>2.20.1</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <linkXRef>true</linkXRef>
@@ -244,8 +250,20 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.annotation</groupId>
+                        <artifactId>javax.annotation-api</artifactId>
+                        <version>1.3.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.2.0</version>
                 <configuration>
                     <attachClasses>true</attachClasses>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -256,12 +274,14 @@
                 <configuration>
                     <rules>
                         <requireMavenVersion>
-                            <message>At least Maven in version ${maven.min.version} is
+                            <message>At least Maven in version
+                                ${maven.min.version} is
                                 required.</message>
                             <version>${maven.min.version}</version>
                         </requireMavenVersion>
                         <requireJavaVersion>
-                            <message>At least a JDK in version ${java.min.version} is
+                            <message>At least a JDK in version
+                                ${java.min.version} is
                                 required.</message>
                             <version>${java.min.version}</version>
                         </requireJavaVersion>
@@ -276,54 +296,51 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+            <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.2.Final</version>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.3.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19.1</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
-    
-    
-    
-    <!-- Profiles for the application servers against which the samples are run -->
-    
+
+
+
+    <!-- Profiles for the application servers against which the samples are 
+        run -->
+
 
     <profiles>
-        
-        <!-- ###  PAYARA  ### -->
-        
-        
+
+        <!-- ### PAYARA ### -->
+
+
         <profile>
             <id>payara-ci-managed</id>
-            
+
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            
+
             <dependencies>
-                
-                <!-- Yasson (JSON-B RI) -->   
+
+                <!-- Yasson (JSON-B RI) -->
                 <dependency>
                     <groupId>org.eclipse</groupId>
                     <artifactId>yasson</artifactId>
                     <version>1.0</version>
                     <scope>runtime</scope>
                 </dependency>
-                
+
                 <!-- WebSocket client dependencies -->
                 <dependency>
                     <groupId>org.glassfish.tyrus</groupId>
@@ -337,16 +354,16 @@
                     <version>1.13.1</version>
                     <scope>test</scope>
                 </dependency>
-                
-                 <!-- The actual Arquillian connector -->
+
+                <!-- The actual Arquillian connector -->
                 <dependency>
                     <groupId>org.omnifaces</groupId>
-                    <artifactId>arquillian-payara-server-4-managed</artifactId> 
-                    <version>1.0-beta2-SNAPSHOT</version> 
+                    <artifactId>arquillian-payara-server-4-managed</artifactId>
+                    <version>1.0-beta2-SNAPSHOT</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            
+
             <build>
                 <plugins>
                     <plugin>
@@ -360,6 +377,8 @@
                                     <goal>unpack</goal>
                                 </goals>
                                 <configuration>
+                                    <outputDirectory>${session.executionRootDirectory}/target</outputDirectory>
+                                    <markersDirectory>${session.executionRootDirectory}/target/dependency-maven-plugin-markers</markersDirectory>
                                     <artifactItems>
                                         <artifactItem>
                                             <groupId>fish.payara.distributions</groupId>
@@ -378,12 +397,19 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>javax.annotation</groupId>
+                                    <artifactId>javax.annotation-api</artifactId>
+                                    <version>1.3.1</version>
+                                </dependency>
+                            </dependencies>
                             <environmentVariables>
-                                <GLASSFISH_HOME>${session.executionRootDirectory}/target/payara50</GLASSFISH_HOME>
+                                <GLASSFISH_HOME>${session.executionRootDirectory}/target/payara5</GLASSFISH_HOME>
                             </environmentVariables>
                             <!-- This needs tuning -->
                             <systemPropertyVariables>
-                                <glassfishRemote_gfHome>${session.executionRootDirectory}/target/payara50</glassfishRemote_gfHome>
+                                <glassfishRemote_gfHome>${session.executionRootDirectory}/target/payara5</glassfishRemote_gfHome>
                                 <javaEEServer>payara-remote</javaEEServer>
                                 <arquillian.launch>payara</arquillian.launch>
                             </systemPropertyVariables>
@@ -392,7 +418,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
             <id>payara-embedded</id>
             <dependencies>
@@ -426,7 +452,7 @@
                     <version>2.25</version>
                     <scope>test</scope>
                 </dependency>
-                
+
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
@@ -447,22 +473,22 @@
                 </testResources>
             </build>
         </profile>
-        
+
         <profile>
             <id>payara-remote</id>
-            
+
             <dependencies>
-            
+
                 <!-- The actual Arquillian connector -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-4-remote</artifactId> 
-                    <version>1.0.Beta2</version> 
+                    <artifactId>arquillian-payara-server-4-remote</artifactId>
+                    <version>1.0.Beta2</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
             <build>
-                 <plugins>
+                <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
@@ -471,14 +497,14 @@
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
-                   </plugins>
+                </plugins>
             </build>
         </profile>
-        
-        
-        
-        <!-- ###  GLASSFISH  ### -->
-        
+
+
+
+        <!-- ### GLASSFISH ### -->
+
         <profile>
             <id>glassfish-embedded</id>
             <dependencies>
@@ -532,7 +558,7 @@
                 </testResources>
             </build>
         </profile>
-        
+
         <profile>
             <id>glassfish-remote</id>
             <dependencies>
@@ -580,7 +606,7 @@
                 </dependency>
             </dependencies>
             <build>
-                 <plugins>
+                <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
@@ -589,7 +615,7 @@
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
-                   </plugins>
+                </plugins>
                 <testResources>
                     <testResource>
                         <directory>src/test/resources</directory>
@@ -603,21 +629,21 @@
             </build>
         </profile>
 
-        
-        
-       
-        <!-- ###  TOMCAT  ### -->
+
+
+
+        <!-- ### TOMCAT ### -->
 
         <profile>
             <id>tomcat-remote</id>
-    
-            <properties> 
+
+            <properties>
                 <skipEJB>true</skipEJB>
                 <skipCDI>true</skipCDI>
                 <skipJSF>true</skipJSF>
                 <skipJACC>true</skipJACC>
-            </properties> 
-    
+            </properties>
+
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -626,7 +652,7 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            
+
             <build>
                 <plugins>
                     <plugin>
@@ -645,37 +671,37 @@
         <profile>
             <id>tomcat-ci-managed</id>
 
-            <properties> 
+            <properties>
                 <skipEJB>true</skipEJB>
                 <skipCDI>true</skipCDI>
                 <skipJSF>true</skipJSF>
                 <skipJACC>true</skipJACC>
             </properties>
-            
+
             <repositories>
                 <!-- Released versions of Tomcat -->
                 <repository>
-                    <id>apache.public</id> 
-                    <url>https://repository.apache.org/content/repositories/public/</url> 
-                    <releases> 
-                        <enabled>true</enabled> 
-                    </releases> 
-                    <snapshots> 
-                        <enabled>false</enabled> 
-                    </snapshots> 
+                    <id>apache.public</id>
+                    <url>https://repository.apache.org/content/repositories/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
                 </repository>
-                
+
                 <!-- About to be released version of Tomcat -->
                 <repository>
-                    <id>apache.staging</id> 
-                    <url>https://repository.apache.org/content/repositories/staging/</url> 
-                    <releases> 
-                        <enabled>true</enabled> 
-                    </releases> 
-                    <snapshots> 
-                        <enabled>false</enabled> 
-                    </snapshots> 
-                </repository> 
+                    <id>apache.staging</id>
+                    <url>https://repository.apache.org/content/repositories/staging/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
             </repositories>
 
             <dependencies>
@@ -727,11 +753,9 @@
                                 <configuration>
                                     <tasks>
                                         <echo>Copying server.xml</echo>
-                                        <copy
-                                            failonerror="false"
+                                        <copy failonerror="false"
                                             file="../../test-utils/src/main/resources/tomcat-users.xml"
-                                            tofile="${project.build.directory}/apache-tomcat-${tomcat.version}/conf/tomcat-users.xml"
-                                        />
+                                            tofile="${project.build.directory}/apache-tomcat-${tomcat.version}/conf/tomcat-users.xml" />
                                     </tasks>
                                 </configuration>
                             </execution>
@@ -753,11 +777,9 @@
 
 
 
-        <!-- 
-            Activate this profile to download javadoc and sources jars. run: 
-            mvn process-resources -Ddownload Notice: This feature has been removed with 
-            plugin version 2.5, so keep this plugin configuration in a profile section. 
-        -->
+        <!-- Activate this profile to download javadoc and sources jars. 
+            run: mvn process-resources -Ddownload Notice: This feature has been removed 
+            with plugin version 2.5, so keep this plugin configuration in a profile section. -->
         <profile>
             <id>javadocs</id>
             <activation>
