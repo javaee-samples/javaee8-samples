@@ -25,9 +25,9 @@
 
         <!-- Application Server versions (these are downloaded and installed 
             in these versions by Maven for the CI profiles) -->
-        <payara.version>5.Beta1</payara.version>
+        <payara.version>5.Beta2</payara.version>
         <glassfish.version>4.1.1</glassfish.version>
-        <tomcat.version>8.5.6</tomcat.version>
+        <tomcat.version>9.0.4</tomcat.version>
     </properties>
 
     <repositories>
@@ -43,14 +43,24 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-        </repository>
+	    </repository>
+	
+		<repository>
+			<id>payara-milestones</id>
+			<name>Payara Milestones</name>
+			<url>https://raw.github.com/payara/Payara_PatchedProjects/master</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 
         <repository>
             <id>ossrh</id>
             <name>Sonatype-snapshot</name>
-
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -101,27 +111,33 @@
         <module>json-p</module>
     </modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.2.0.Final</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.container</groupId>
-                <artifactId>arquillian-container-test-api</artifactId>
-                <version>1.2.0.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>1.4.196</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.2.1.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.container</groupId>
+				<artifactId>arquillian-container-test-api</artifactId>
+				<version>1.2.1.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.196</version>
+			</dependency>
+			<dependency>
+				<groupId>fish.payara.arquillian</groupId>
+				<artifactId>payara-client-ee8</artifactId>
+				<version>1.0.Beta3-m1</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 
     <dependencies>
@@ -270,7 +286,9 @@
                 </configuration>
             </plugin>
             <plugin>
+            		<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M1</version>
                 <configuration>
                     <rules>
                         <requireMavenVersion>
@@ -315,8 +333,7 @@
 
 
 
-    <!-- Profiles for the application servers against which the samples are 
-        run -->
+    <!-- Profiles for the application servers against which the samples are run -->
 
 
     <profiles>
@@ -331,38 +348,20 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
 
-            <dependencies>
-
-                <!-- Yasson (JSON-B RI) -->
-                <dependency>
-                    <groupId>org.eclipse</groupId>
-                    <artifactId>yasson</artifactId>
-                    <version>1.0</version>
-                    <scope>runtime</scope>
-                </dependency>
-
-                <!-- WebSocket client dependencies -->
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-container-grizzly-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-
-                <!-- The actual Arquillian connector -->
-                <dependency>
-                    <groupId>org.omnifaces</groupId>
-                    <artifactId>arquillian-payara-server-4-managed</artifactId>
-                    <version>1.0-beta2-SNAPSHOT</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
+			<dependencies>
+				<dependency>
+					<groupId>fish.payara.arquillian</groupId>
+					<artifactId>payara-client-ee8</artifactId>
+				</dependency>
+		
+				<!-- The actual Arquillian connector -->
+				<dependency>
+					<groupId>fish.payara.arquillian</groupId>
+					<artifactId>arquillian-payara-server-4-managed</artifactId>
+					<version>1.0.Beta3-m1</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
 
             <build>
                 <plugins>
@@ -478,12 +477,16 @@
             <id>payara-remote</id>
 
             <dependencies>
+            		<dependency>
+					<groupId>fish.payara.arquillian</groupId>
+					<artifactId>payara-client-ee8</artifactId>
+				</dependency>
 
                 <!-- The actual Arquillian connector -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-4-remote</artifactId>
-                    <version>1.0.Beta2</version>
+                    <version>1.0.Beta3-m1</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
