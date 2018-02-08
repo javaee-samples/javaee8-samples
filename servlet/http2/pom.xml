@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"> 
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.javaee8</groupId>
+        <artifactId>servlet</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>servlet-http2</artifactId>
+    <packaging>war</packaging>
+
+    <name>Java EE 8 Samples: Servlet - http2</name>
+    
+    <properties>
+        <alpn-version>8.1.11.v20170118</alpn-version>
+        <jetty-version>9.4.8.v20171121</jetty-version>
+    </properties>
+    
+    <dependencies>
+        <!-- Jetty HTTP2 client -->
+        <dependency>
+            <groupId>org.eclipse.jetty.http2</groupId>
+            <artifactId>http2-client</artifactId>
+            <version>${jetty-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.http2</groupId>
+            <artifactId>http2-common</artifactId>
+            <version>${jetty-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.http2</groupId>
+            <artifactId>http2-http-client-transport</artifactId>
+            <version>${jetty-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-alpn-openjdk8-client</artifactId>
+            <version>${jetty-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-alpn-java-client</artifactId>
+            <version>${jetty-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>get</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <groupId>org.mortbay.jetty.alpn</groupId>
+                    <artifactId>alpn-boot</artifactId>
+                    <version>${alpn-version}</version>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Configure the use of ALPN in the test -->
+                    <argLine>-Xbootclasspath/p:${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/${alpn-version}/alpn-boot-${alpn-version}.jar</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>
