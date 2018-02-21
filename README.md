@@ -19,10 +19,10 @@ These are the available container profiles:
       Useful for CI servers. The Payara version that's used can be set via the ``payara.version`` property.
       This is the default profile and does not have to be specified explicitly.
 
-  * ``payara-embedded``
+   * ``payara-micro-managed``
     
-      This profile uses the Payara embedded server and runs in the same JVM as the TestClass.
-      Useful for development, but has the downside of server startup per sample.
+      This profile will install Payara Micro and start up the jar per sample.
+      Useful for CI servers. The Payara Micro version that's used can be set via the ``payara.micro.version`` property.
 
   * ``payara-remote``
     

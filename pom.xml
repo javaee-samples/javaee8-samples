@@ -25,7 +25,8 @@
 
         <!-- Application Server versions (these are downloaded and installed 
             in these versions by Maven for the CI profiles) -->
-        <payara.version>5.Beta2</payara.version>
+        <payara.version>5.Beta3-m1</payara.version>
+        <payara.micro.version>5.Beta3-m1</payara.micro.version> 
         <glassfish.version>4.1.1</glassfish.version>
         <tomcat.version>9.0.4</tomcat.version>
     </properties>
@@ -66,7 +67,6 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
 
@@ -116,14 +116,14 @@
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
-				<version>1.2.1.Final</version>
+				<version>1.3.0.Final</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.arquillian.container</groupId>
 				<artifactId>arquillian-container-test-api</artifactId>
-				<version>1.2.1.Final</version>
+				<version>1.3.0.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
@@ -503,6 +503,72 @@
                 </plugins>
             </build>
         </profile>
+
+
+        <profile>
+            <id>payara-micro-managed</id>
+
+            <properties>
+                <skipJMS>true</skipJMS>
+                <skipJAXWS>true</skipJAXWS>
+            </properties>
+
+            <dependencies>
+                <!-- Java EE based client dependencies to contact a server via WebSocket or REST -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                </dependency>
+            
+                <!-- The Arquillian connector -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-micro-5-managed</artifactId> 
+                    <version>1.0.Beta3-m2</version> 
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <!-- Download Payara Micro and copy to target directory -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>fish.payara.extras</groupId>
+                                            <artifactId>payara-micro</artifactId>
+                                            <version>${payara.micro.version}</version>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${session.executionRootDirectory}/target/</outputDirectory>
+                                            <destFileName>payara-micro-${payara.micro.version}.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Configure Payara Micro Runtime -->
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <environmentVariables>
+                                <MICRO_JAR>${session.executionRootDirectory}/target/payara-micro-${payara.micro.version}.jar</MICRO_JAR>
+                            </environmentVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+       
 
 
 
