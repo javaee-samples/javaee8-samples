@@ -1,4 +1,4 @@
-package org.javaee8.sse.producer;
+package org.javaee8.jaxrs.sseproducer;
 
 import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
 
@@ -9,6 +9,9 @@ import java.util.Date;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
+import org.javaee8.jaxrs.sseproducer.data.EventData;
+import org.javaee8.jaxrs.sseproducer.producer.SseResource;
+import org.javaee8.jaxrs.sseproducer.rest.RestApplication;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -24,8 +27,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.sse.SseEventSource;
 import static org.hamcrest.CoreMatchers.instanceOf;
-import org.javaee8.sse.data.EventData;
-import org.javaee8.sse.rest.RestApplication;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;

@@ -7,13 +7,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sse</artifactId>
+    <artifactId>jaxrs</artifactId>
     <packaging>pom</packaging>
 
-    <name>Java EE 8 Samples: Server Sent Events</name>
+    <name>Java EE 8 Samples: JAX-RS</name>
 
     <modules>
-        <module>producer</module>
+        <module>sse-producer</module>
     </modules>
 
     <dependencies>

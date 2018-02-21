@@ -1,4 +1,4 @@
-package org.javaee8.sse.rest;
+package org.javaee8.jaxrs.sseproducer.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

@@ -1,4 +1,4 @@
-package org.javaee8.sse.producer;
+package org.javaee8.jaxrs.sseproducer.producer;
 
 import javax.annotation.PostConstruct;
 import javax.json.bind.Jsonb;
@@ -11,7 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.sse.Sse;
 import javax.ws.rs.sse.SseBroadcaster;
 import javax.ws.rs.sse.SseEventSink;
-import org.javaee8.sse.data.EventData;
+
+import org.javaee8.jaxrs.sseproducer.data.EventData;
 
 /**
  * @author Daniel Contreras

@@ -1,4 +1,4 @@
-package org.javaee8.sse.data;
+package org.javaee8.jaxrs.sseproducer.data;
 
 import java.util.Date;
 import java.util.UUID;

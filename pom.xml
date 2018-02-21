@@ -101,7 +101,7 @@
     <modules>
         <module>test-utils</module>
         <module>servlet</module>
-        <module>sse</module>
+        <module>jaxrs</module>
         <module>security</module>
         <module>jsf</module>
         <module>cdi</module>
