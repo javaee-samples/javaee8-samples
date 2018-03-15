@@ -1,6 +1,7 @@
 package org.javaee8.servlet.http2;
 
 import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -8,8 +9,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.client.ClientConfig;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -23,7 +28,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class Http2Test {
 
-    private WebClient client;
+    private Client jaxrsClient;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -36,26 +41,36 @@ public class Http2Test {
     @RunAsClient
     public void testHttp2ControlGroup()
             throws InterruptedException, ExecutionException, TimeoutException, URISyntaxException {
-        String url = "https://http2.akamai.com/";
-        assertNotNull(client.getResponse(url));
+        testUrl("https://http2.akamai.com/");
     }
 
     @Test
     @RunAsClient
     public void testServerHttp2(@ArquillianResource URL url)
             throws InterruptedException, ExecutionException, TimeoutException, URISyntaxException {
-        assertNotNull(client.getResponse(url.toString()));
+        Response response = testUrl(url.toURI().toString());
+        assertEquals(
+                "Request wasn't over HTTP/2."
+                        + " Either the wrong servlet was returned, or the server doesn't support HTTP/2.",
+                response.getHeaderString("protocol"), "HTTP/2");
+    }
+
+    private Response testUrl(String url) {
+        Response response = jaxrsClient.target(url).request().get();
+        assertNotNull(response);
+        return response;
     }
 
     @Before
     public void setup() throws Exception {
-        client = new WebClient(Level.INFO);
-        client.start();
+        ClientConfig config = new ClientConfig();
+        config.connectorProvider(JettyConnector::new);
+        jaxrsClient = ClientBuilder.newClient(config);
     }
 
     @After
     public void cleanUp() throws Exception {
-        client.stop();
+        jaxrsClient.close();
     }
 
 }
