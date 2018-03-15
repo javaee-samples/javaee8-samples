@@ -30,8 +30,8 @@ public class Servlet extends HttpServlet {
             response.addHeader("protocol", "HTTP 1.1");
             response.getWriter().append("<p>The image below was sent normally using HTTP 1.1.</p>");
         } else {
-            response.addHeader("protocol", "HTTP 2.0");
-            response.getWriter().append("<p>The image below was pushed using HTTP 2.0.</p>");
+            response.addHeader("protocol", "HTTP/2");
+            response.getWriter().append("<p>The image below was pushed using HTTP/2.</p>");
             builder.path("images/payara-logo.jpg").push();
         }
         response.getWriter().append("<img src=\"images/payara-logo.jpg\" />");
