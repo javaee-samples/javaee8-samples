@@ -14,7 +14,7 @@
     <name>Java EE 8 Samples: Servlet - http2</name>
     
     <properties>
-        <alpn-version>8.1.11.v20170118</alpn-version>
+        <alpn-version>8.1.12.v20180117</alpn-version>
         <jetty-version>9.4.8.v20171121</jetty-version>
     </properties>
     
@@ -29,12 +29,6 @@
         <dependency>
             <groupId>org.eclipse.jetty.http2</groupId>
             <artifactId>http2-common</artifactId>
-            <version>${jetty-version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty.http2</groupId>
-            <artifactId>http2-http-client-transport</artifactId>
             <version>${jetty-version}</version>
             <scope>test</scope>
         </dependency>
