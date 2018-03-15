@@ -1,22 +1,15 @@
 package org.javaee8.servlet.http2;
 
-import static org.eclipse.jetty.http.HttpVersion.HTTP_2;
 import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
 
-import org.eclipse.jetty.client.HttpClient;
-import org.eclipse.jetty.client.api.ContentResponse;
-import org.eclipse.jetty.http.HttpVersion;
-import org.eclipse.jetty.http2.client.HTTP2Client;
-import org.eclipse.jetty.http2.client.http.HttpClientTransportOverHTTP2;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -30,64 +23,39 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class Http2Test {
 
-    private HttpClient httpClient;
+    private WebClient client;
 
     @Deployment
     public static WebArchive createDeployment() {
-        return create(WebArchive.class)
-                .addPackages(true, "org.javaee8.servlet.http2")
+        return create(WebArchive.class).addPackages(true, "org.javaee8.servlet.http2")
                 .addAsWebResource(new File("src/main/webapp/images/payara-logo.jpg"), "images/payara-logo.jpg")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"));
     }
 
     @Test
     @RunAsClient
-    public void testHttp2ControlGroup() {
-        String url = "https://javaee.github.io/";
-        testUrl(url);
+    public void testHttp2ControlGroup()
+            throws InterruptedException, ExecutionException, TimeoutException, URISyntaxException {
+        String url = "https://http2.akamai.com/";
+        assertNotNull(client.getResponse(url));
     }
 
     @Test
     @RunAsClient
-    public void testServerHttp2(@ArquillianResource URL base) {
-        String url = String.format("https://%s:%d%s", base.getHost(), 8181, base.getPath());
-        testUrl(url);
-    }
-
-    private void testUrl(String url) {
-        System.out.println("Testing url: " + url);
-        ContentResponse response = null;
-        try {
-            response = httpClient.GET(url);
-        } catch (InterruptedException ex) {
-            fail("Request was interruped with exception: " + ex.getMessage());
-        } catch (ExecutionException ex) {
-            fail("Exception whilst executing request: " + ex.getMessage());
-        } catch (TimeoutException ex) {
-            fail("Request timed out with exception: " + ex.getMessage());
-        }
-
-        assertFalse("Error getting the response.", response == null);
-
-        HttpVersion protocol = response.getVersion();
-
-        assertTrue(String.format("The page was delivered over %s instead of HTTP 2.", protocol.asString()),
-                protocol.equals(HTTP_2));
+    public void testServerHttp2(@ArquillianResource URL url)
+            throws InterruptedException, ExecutionException, TimeoutException, URISyntaxException {
+        assertNotNull(client.getResponse(url.toString()));
     }
 
     @Before
     public void setup() throws Exception {
-        //System.setProperty("org.eclipse.jetty.client.LEVEL", "DEBUG");
-        SslContextFactory sslContextFactory = new SslContextFactory(true);
-        HTTP2Client http2Client = new HTTP2Client();
-        HttpClientTransportOverHTTP2 http2Transport = new HttpClientTransportOverHTTP2(http2Client);
-        httpClient = new HttpClient(http2Transport, sslContextFactory);
-        httpClient.start();
+        client = new WebClient(Level.INFO);
+        client.start();
     }
 
     @After
     public void cleanUp() throws Exception {
-        httpClient.stop();
+        client.stop();
     }
 
 }
