@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.javaee8</groupId>
@@ -24,7 +24,7 @@
         <skipJACC>${skipTests}</skipJACC>
 
         <!-- Application Server versions (these are downloaded and installed 
-            in these versions by Maven for the CI profiles) -->
+        in these versions by Maven for the CI profiles) -->
         <payara.version>5.Beta2</payara.version>
         <payara.micro.version>5.Beta3-m1</payara.micro.version> 
         <glassfish.version>4.1.1</glassfish.version>
@@ -44,19 +44,19 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-	    </repository>
+        </repository>
 	
-		<repository>
-			<id>payara-milestones</id>
-			<name>Payara Milestones</name>
-			<url>https://raw.github.com/payara/Payara_PatchedProjects/master</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+        <repository>
+            <id>payara-milestones</id>
+            <name>Payara Milestones</name>
+            <url>https://raw.github.com/payara/Payara_PatchedProjects/master</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
 
         <repository>
             <id>ossrh</id>
@@ -97,7 +97,7 @@
 
 
     <!-- The Java EE 8 specs that this project is providing samples for. 
-        Each spec is represented by one module. "test-utils" is a helper module. -->
+    Each spec is represented by one module. "test-utils" is a helper module. -->
     <modules>
         <module>test-utils</module>
         <module>servlet</module>
@@ -111,33 +111,33 @@
         <module>json-p</module>
     </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>1.3.0.Final</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.container</groupId>
-				<artifactId>arquillian-container-test-api</artifactId>
-				<version>1.3.0.Final</version>
-			</dependency>
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>1.4.196</version>
-			</dependency>
-			<dependency>
-				<groupId>fish.payara.arquillian</groupId>
-				<artifactId>payara-client-ee8</artifactId>
-				<version>1.0.Beta3-m1</version>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.3.0.Final</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>arquillian-container-test-api</artifactId>
+                <version>1.3.0.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.196</version>
+            </dependency>
+            <dependency>
+                <groupId>fish.payara.arquillian</groupId>
+                <artifactId>payara-client-ee8</artifactId>
+                <version>1.0.Beta3-m1</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <dependencies>
@@ -286,7 +286,7 @@
                 </configuration>
             </plugin>
             <plugin>
-            		<groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
@@ -332,12 +332,18 @@
     </build>
 
 
-
-    <!-- Profiles for the application servers against which the samples are run -->
-
-
     <profiles>
 
+        <!-- Test Suite Profiles -->
+        <profile>
+            <id>stable</id>
+            
+            <properties>
+                
+            </properties>
+        </profile>
+        
+        <!-- Profiles for the application servers against which the samples are run -->
         <!-- ### PAYARA ### -->
 
 
@@ -348,20 +354,20 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
 
-			<dependencies>
-				<dependency>
-					<groupId>fish.payara.arquillian</groupId>
-					<artifactId>payara-client-ee8</artifactId>
-				</dependency>
+            <dependencies>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                </dependency>
 		
-				<!-- The actual Arquillian connector -->
-				<dependency>
-					<groupId>fish.payara.arquillian</groupId>
-					<artifactId>arquillian-payara-server-4-managed</artifactId>
-					<version>1.0.Beta3-m1</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
+                <!-- The actual Arquillian connector -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-4-managed</artifactId>
+                    <version>1.0.Beta3-m1</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
 
             <build>
                 <plugins>
@@ -477,10 +483,10 @@
             <id>payara-remote</id>
 
             <dependencies>
-            		<dependency>
-					<groupId>fish.payara.arquillian</groupId>
-					<artifactId>payara-client-ee8</artifactId>
-				</dependency>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                </dependency>
 
                 <!-- The actual Arquillian connector -->
                 <dependency>
@@ -823,8 +829,8 @@
                                     <tasks>
                                         <echo>Copying server.xml</echo>
                                         <copy failonerror="false"
-                                            file="../../test-utils/src/main/resources/tomcat-users.xml"
-                                            tofile="${project.build.directory}/apache-tomcat-${tomcat.version}/conf/tomcat-users.xml" />
+                                              file="../../test-utils/src/main/resources/tomcat-users.xml"
+                                              tofile="${project.build.directory}/apache-tomcat-${tomcat.version}/conf/tomcat-users.xml" />
                                     </tasks>
                                 </configuration>
                             </execution>
@@ -847,8 +853,8 @@
 
 
         <!-- Activate this profile to download javadoc and sources jars. 
-            run: mvn process-resources -Ddownload Notice: This feature has been removed 
-            with plugin version 2.5, so keep this plugin configuration in a profile section. -->
+        run: mvn process-resources -Ddownload Notice: This feature has been removed 
+        with plugin version 2.5, so keep this plugin configuration in a profile section. -->
         <profile>
             <id>javadocs</id>
             <activation>
