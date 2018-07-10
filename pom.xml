@@ -25,10 +25,10 @@
 
         <!-- Application Server versions (these are downloaded and installed 
             in these versions by Maven for the CI profiles) -->
-        <payara.version>5.Beta2</payara.version>
-        <payara.micro.version>5.Beta3-m1</payara.micro.version> 
+        <payara.version>5.182</payara.version>
+        <payara.micro.version>5.182</payara.micro.version> 
         <glassfish.version>4.1.1</glassfish.version>
-        <tomcat.version>9.0.4</tomcat.version>
+        <tomcat.version>9.0.10</tomcat.version>
     </properties>
 
     <repositories>
