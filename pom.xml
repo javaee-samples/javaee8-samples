@@ -286,7 +286,7 @@
                 </configuration>
             </plugin>
             <plugin>
-            		<groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
@@ -717,7 +717,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-remote-7</artifactId>
-                    <version>1.0.0.CR7</version>
+                    <version>1.0.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -777,7 +777,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-managed-7</artifactId>
-                    <version>1.0.0.CR7</version>
+                    <version>1.0.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -845,8 +845,8 @@
 
 
 
-        <!-- Activate this profile to download javadoc and sources jars. 
-            run: mvn process-resources -Ddownload Notice: This feature has been removed 
+        <!-- Activate this profile to download javadoc and sources jars.
+            run: mvn process-resources -Ddownload Notice: This feature has been removed
             with plugin version 2.5, so keep this plugin configuration in a profile section. -->
         <profile>
             <id>javadocs</id>
