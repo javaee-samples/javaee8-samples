@@ -286,7 +286,7 @@
                 </configuration>
             </plugin>
             <plugin>
-            		<groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
@@ -717,7 +717,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-remote-7</artifactId>
-                    <version>1.0.0.CR7</version>
+                    <version>1.0.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -777,7 +777,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-managed-7</artifactId>
-                    <version>1.0.0.CR7</version>
+                    <version>1.0.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -789,7 +789,7 @@
                         <artifactId>maven-dependency-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>unpack</id>
+                                <id>unpack-tomcat</id>
                                 <phase>process-test-classes</phase>
                                 <goals>
                                     <goal>unpack</goal>
@@ -807,25 +807,24 @@
                                     </artifactItems>
                                 </configuration>
                             </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.1</version>
-                        <executions>
                             <execution>
+                                <id>unpack-tomcat-users</id>
                                 <phase>process-test-classes</phase>
                                 <goals>
-                                    <goal>run</goal>
+                                    <goal>unpack</goal>
                                 </goals>
                                 <configuration>
-                                    <tasks>
-                                        <echo>Copying server.xml</echo>
-                                        <copy failonerror="false"
-                                            file="../../test-utils/src/main/resources/tomcat-users.xml"
-                                            tofile="${project.build.directory}/apache-tomcat-${tomcat.version}/conf/tomcat-users.xml" />
-                                    </tasks>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.javaee8</groupId>
+                                            <artifactId>test-utils</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/conf</outputDirectory>
+                                            <includes>tomcat-users.xml</includes>
+                                        </artifactItem>
+                                    </artifactItems>
                                 </configuration>
                             </execution>
                         </executions>
@@ -846,8 +845,8 @@
 
 
 
-        <!-- Activate this profile to download javadoc and sources jars. 
-            run: mvn process-resources -Ddownload Notice: This feature has been removed 
+        <!-- Activate this profile to download javadoc and sources jars.
+            run: mvn process-resources -Ddownload Notice: This feature has been removed
             with plugin version 2.5, so keep this plugin configuration in a profile section. -->
         <profile>
             <id>javadocs</id>
