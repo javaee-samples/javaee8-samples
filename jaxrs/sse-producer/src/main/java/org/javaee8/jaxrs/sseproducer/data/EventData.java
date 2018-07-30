@@ -2,7 +2,6 @@ package org.javaee8.jaxrs.sseproducer.data;
 
 import java.util.Date;
 import java.util.UUID;
-import javax.json.bind.JsonbBuilder;
 
 /**
  *
@@ -16,7 +15,7 @@ public class EventData {
 
     public EventData() {
     }
-    
+
     public EventData(String comment) {
         this.setTime(new Date());
         this.setId(UUID.randomUUID().toString());
@@ -45,10 +44,5 @@ public class EventData {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    @Override
-    public String toString() {
-        return JsonbBuilder.create().toJson(this);
     }
 }

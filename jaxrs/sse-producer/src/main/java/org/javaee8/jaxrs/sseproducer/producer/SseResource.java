@@ -15,11 +15,13 @@ import javax.ws.rs.sse.SseEventSink;
 import org.javaee8.jaxrs.sseproducer.data.EventData;
 
 /**
+ * Produces server side events.
+ *
  * @author Daniel Contreras
  */
 @Path("sse")
 public class SseResource {
-    
+
     @Context
     private Sse sse;
 
@@ -34,25 +36,23 @@ public class SseResource {
     @Path("register")
     @Produces(MediaType.SERVER_SENT_EVENTS)
     public void register(@Context SseEventSink eventSink) {
-        
-        Jsonb jsonb = JsonbBuilder.create();
 
-        eventSink.send(sse.newEvent("INIT",new EventData("event:intialized").toString()));
+        final Jsonb json = JsonbBuilder.create();
+        eventSink.send(sse.newEvent("INIT", json.toJson(new EventData("event:intialized"))));
 
         sseBroadcaster.register(eventSink);
 
         for (int i = 0; i < 5; i++) {
 
-            sseBroadcaster.broadcast(sse.newEvent("EVENT",new EventData("event:"+i).toString()));
+            sseBroadcaster.broadcast(sse.newEvent("EVENT", json.toJson(new EventData("event:" + i))));
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        
-        eventSink.send(sse.newEvent("FINISH",new EventData("event:finished").toString()));
+
+        eventSink.send(sse.newEvent("FINISH", json.toJson(new EventData("event:finished"))));
     }
-    
 }
