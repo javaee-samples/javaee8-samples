@@ -14,6 +14,7 @@ import javax.validation.Validator;
 import javax.validation.groups.Default;
 import java.time.*;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,7 +29,14 @@ import static org.junit.Assert.assertThat;
 public class ConstraintViolationTest {
 
     private Validator validator;
-    
+
+    static {
+        // prevent to use translated messages which we compare in test;
+        // translation language depends on the locale.
+        Locale.setDefault(Locale.US);
+    }
+
+
     @Deployment
     public static WebArchive deploy() {
         return create(WebArchive.class)
