@@ -4,6 +4,7 @@ The [JSR 372](https://jcp.org/en/jsr/detail?id=372) specifies the next version o
 
 ## Samples ##
 
+- hello-world shows a typical "hello world" that prints this often used sentence coming from a backing bean 
 - extensionless-mapping shows how to configure JSF so that views can be requested without using an extension
 
 
