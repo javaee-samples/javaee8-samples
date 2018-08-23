@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -12,11 +12,11 @@
     <packaging>war</packaging>
 
     <name>Java EE 8 Samples: Servlet - http2</name>
-    
+
     <properties>
         <jetty-version>9.4.8.v20171121</jetty-version>
     </properties>
-    
+
     <dependencies>
         <!-- Jetty HTTP2 client -->
         <dependency>
@@ -53,6 +53,8 @@
                 <jdk>1.8</jdk>
             </activation>
             <properties>
+                <!-- default is the newest possible, supports 8u161 to 8u181 -->
+                <alpn.version>8.1.12.v20180117</alpn.version>
                 <bootclasspathPrefix>
                     ${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/${alpn.version}/alpn-boot-${alpn.version}.jar
                 </bootclasspathPrefix>
@@ -327,51 +329,6 @@
                 <alpn.version>8.1.11.v20170118</alpn.version>
             </properties>
         </profile>
-        <profile>
-            <id>alpn-when-jdk8_161</id>
-            <activation>
-                <jdk>1.8.0_161</jdk>
-            </activation>
-            <properties>
-                <alpn.version>8.1.12.v20180117</alpn.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>alpn-when-jdk8_162</id>
-            <activation>
-                <jdk>1.8.0_162</jdk>
-            </activation>
-            <properties>
-                <alpn.version>8.1.12.v20180117</alpn.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>alpn-when-jdk8_163</id>
-            <activation>
-                <jdk>1.8.0_163</jdk>
-            </activation>
-            <properties>
-                <alpn.version>8.1.12.v20180117</alpn.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>alpn-when-jdk8_172</id>
-            <activation>
-                <jdk>1.8.0_172</jdk>
-            </activation>
-            <properties>
-                <alpn.version>8.1.12.v20180117</alpn.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>alpn-when-jdk8_173</id>
-            <activation>
-                <jdk>1.8.0_173</jdk>
-            </activation>
-            <properties>
-                <alpn.version>8.1.12.v20180117</alpn.version>
-            </properties>
-        </profile>
     </profiles>
-    
+
 </project>

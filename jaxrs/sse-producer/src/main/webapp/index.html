@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-
 @author Daniel Contreras
 -->
 <html>
@@ -20,7 +16,7 @@ and open the template in the editor.
         <button onclick="start()">Start</button>
 
         <script>
-                        
+
             function start() {
 
                 var eventSource = new EventSource("rest/sse/register");
@@ -28,7 +24,7 @@ and open the template in the editor.
 
                 eventSource.onmessage = function (event) {
                     console.log(event)
-                    var el = document.getElementById("foo"); 
+                    var el = document.getElementById("foo");
                     el.innerHTML += event.data + "<br/>";
                     el.scrollTop += 50;
                 };
@@ -36,7 +32,7 @@ and open the template in the editor.
                 eventSource.addEventListener('broadcast', function (event) {
 
                     console.log(event)
-                    var el = document.getElementById("foo"); 
+                    var el = document.getElementById("foo");
                     el.innerHTML += event.data + "lt;br/&>";
                     el.scrollTop += 50;
 
