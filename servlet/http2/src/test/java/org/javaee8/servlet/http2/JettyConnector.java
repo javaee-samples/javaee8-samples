@@ -167,13 +167,11 @@ public class JettyConnector implements Connector {
             client.connect(new InetSocketAddress(host, port), new ServerSessionListener.Adapter(), sessionPromise);
         }
 
-        Session session = null;
         try {
-            session = sessionPromise.get(5, TimeUnit.SECONDS);
+            return sessionPromise.get(5, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Cloud not get a session.", e);
         }
-        return session;
     }
 
 }
