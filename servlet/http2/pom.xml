@@ -14,7 +14,7 @@
     <name>Java EE 8 Samples: Servlet - http2</name>
 
     <properties>
-        <jetty-version>9.4.8.v20171121</jetty-version>
+        <jetty-version>9.4.11.v20180605</jetty-version>
     </properties>
 
     <dependencies>
