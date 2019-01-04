@@ -29,7 +29,7 @@ public class DynamicBeanTest {
                     create(JavaArchive.class)
                         .addClasses(CdiExtension.class, MyBean.class, MyBeanImpl.class)
                         .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension"))
-                .addAsManifestResource("beans.xml");
+                .addAsWebInfResource("beans.xml");
     }
 
     @Inject

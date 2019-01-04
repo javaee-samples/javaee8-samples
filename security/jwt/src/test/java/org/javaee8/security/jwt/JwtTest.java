@@ -83,7 +83,8 @@ public class JwtTest {
                 .addPackage(JWTCredential.class.getPackage())
                 .addAsLibraries(jjwtFiles)
                 .setWebXML("web.xml")
-                .addAsWebInfResource("beans.xml");
+                .addAsWebInfResource("beans.xml")
+                .addAsWebInfResource("jboss-web.xml");
     }
 
     @Before

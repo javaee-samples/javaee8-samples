@@ -1,0 +1,8 @@
+thorntail:
+  undertow:
+    servers:
+      default-server:
+        http-listeners:
+          default:
+            # in Thorntail, HTTP/2 is by default only enabled for the HTTPS listener
+            enable-http2: true

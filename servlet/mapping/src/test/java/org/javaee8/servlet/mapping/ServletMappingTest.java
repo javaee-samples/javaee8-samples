@@ -59,8 +59,8 @@ public class ServletMappingTest {
         System.out.println("\nContent for `"+ base + "path/foo" + "` :\n" + content + "\n");
         
         assertTrue(content.contains("Mapping match:" + MappingMatch.PATH.name()));
-        assertTrue(content.contains("Match value:foo"));
-        assertTrue(content.contains("Pattern:/path/*"));
+        assertTrue(content.contains("Match value:'foo'"));
+        assertTrue(content.contains("Pattern:'/path/*'"));
     }
 
     @Test
@@ -74,8 +74,8 @@ public class ServletMappingTest {
         System.out.println("\nContent for `"+ base + "foo.ext" + "` :\n" + content + "\n");
         
         assertTrue(content.contains("Mapping match:" + MappingMatch.EXTENSION.name()));
-        assertTrue(content.contains("Match value:foo"));
-        assertTrue(content.contains("Pattern:*.ext"));
+        assertTrue(content.contains("Match value:'foo'"));
+        assertTrue(content.contains("Pattern:'*.ext'"));
     }
     
     @Test
@@ -89,8 +89,8 @@ public class ServletMappingTest {
         System.out.println("\nContent for `"+ base + "` :\n" + content + "\n");
         
         assertTrue(content.contains("Mapping match:" + MappingMatch.CONTEXT_ROOT.name()));
-        assertTrue(content.contains("Match value:"));
-        assertTrue(content.contains("Pattern:/"));
+        assertTrue(content.contains("Match value:''"));
+        assertTrue(content.contains("Pattern:''"));
     }
     
     @Test
@@ -104,8 +104,8 @@ public class ServletMappingTest {
         System.out.println("\nContent for `"+ base + "doesnotexist" + "` :\n" + content + "\n");
         
         assertTrue(content.contains("Mapping match:" + MappingMatch.DEFAULT.name()));
-        assertTrue(content.contains("Match value:doesnotexist"));
-        assertTrue(content.contains("Pattern:/"));
+        assertTrue(content.contains("Match value:''"));
+        assertTrue(content.contains("Pattern:'/'"));
     }
     
     @Test
@@ -119,8 +119,8 @@ public class ServletMappingTest {
         System.out.println("\nContent for `"+ base + "exact" + "` :\n" + content + "\n");
         
         assertTrue(content.contains("Mapping match:" + MappingMatch.EXACT.name()));
-        assertTrue(content.contains("Match value:exact"));
-        assertTrue(content.contains("Pattern:/exact"));
+        assertTrue(content.contains("Match value:'exact'"));
+        assertTrue(content.contains("Pattern:'/exact'"));
     }
     
 

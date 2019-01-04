@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<jboss-web>
+    <!-- JASPIC activation for Wildfly. -->
+    <!-- See https://arjan-tijms.omnifaces.org/2015/08/activating-jaspic-in-jboss-wildfly.html -->
+    <security-domain>jaspitest</security-domain>
+</jboss-web>

@@ -13,8 +13,8 @@
     <name>Java EE 8 Samples: Security</name>
 
     <modules>
-        	<module>dynamic-rememberme</module>
-                <module>jwt</module>
+            <module>dynamic-rememberme</module>
+            <module>jwt</module>
     </modules>
 
     <dependencies>

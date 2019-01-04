@@ -1,0 +1,8 @@
+<jboss-deployment-structure>
+  <deployment>
+    <dependencies>
+      <!-- https://issues.jboss.org/browse/WFLY-11629  -->
+      <module name="org.jboss.jts" services="export"/>
+    </dependencies>    
+  </deployment>  
+</jboss-deployment-structure>
