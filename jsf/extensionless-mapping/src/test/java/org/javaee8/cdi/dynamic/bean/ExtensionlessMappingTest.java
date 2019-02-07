@@ -47,11 +47,12 @@ public class ExtensionlessMappingTest {
     public static WebArchive deploy() {
         WebArchive war = 
             create(WebArchive.class)
-                .addClasses(MappingInit.class, ApplicationInit.class)
+                .addClasses(MappingInit.class, ApplicationInit.class, MappingServletContextListener.class)
                 .addAsWebResource(new File("src/main/webapp/foo.xhtml"))
                 .addAsWebResource(new File("src/main/webapp/bar.xhtml"))
                 .addAsWebResource(new File("src/main/webapp/sub/bar.xhtml"), "/sub/bar.xhtml")
-                .addAsManifestResource("beans.xml");
+                .addAsWebInfResource("beans.xml")
+                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/faces-config.xml"));
         
         System.out.println("War to be deployed contains: \n" + war.toString(true));
         

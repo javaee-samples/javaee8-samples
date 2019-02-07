@@ -53,8 +53,8 @@
                 <jdk>1.8</jdk>
             </activation>
             <properties>
-                <!-- default is the newest possible, supports 8u161 to 8u181 -->
-                <alpn.version>8.1.12.v20180117</alpn.version>
+                <!-- default is the newest possible, supports 8u161 to 8u191 -->
+                <alpn.version>8.1.13.v20181017</alpn.version>
                 <bootclasspathPrefix>
                     ${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/${alpn.version}/alpn-boot-${alpn.version}.jar
                 </bootclasspathPrefix>

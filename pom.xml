@@ -29,6 +29,7 @@
         <payara.micro.version>5.183</payara.micro.version>
         <glassfish.version>5.0</glassfish.version>
         <tomcat.version>9.0.12</tomcat.version>
+        <thorntail.version>2.3.0.Final</thorntail.version>
     </properties>
 
     <repositories>
@@ -322,11 +323,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.2.Final</version>
             </plugin>
         </plugins>
     </build>
@@ -843,6 +839,55 @@
             </build>
         </profile>
 
+        <!-- ### THORNTAIL ### -->
+
+        <profile>
+            <id>thorntail</id>
+
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.thorntail</groupId>
+                        <artifactId>bom</artifactId>
+                        <version>${thorntail.version}</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
+    
+            <dependencies>
+    
+                <!-- Java EE based client dependencies to contact a server via 
+                    WebSocket or REST -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                </dependency>
+    
+                <dependency>
+                    <groupId>io.thorntail</groupId>
+                    <artifactId>arquillian</artifactId>
+                    <scope>test</scope>
+                </dependency>
+    
+            </dependencies>
+    
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <!-- Uncomment to debug -->
+                                <!--<thorntail.debug.port>8000</thorntail.debug.port> -->
+                                <arquillian.xml>arquillian-thorntail.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
 
         <!-- Activate this profile to download javadoc and sources jars.

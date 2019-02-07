@@ -28,11 +28,13 @@ public class Servlet extends HttpServlet {
                 .append("Mapping match:")
                 .append(mapping.getMappingMatch().name())
                 .append("\n")
-                .append("Match value:")
+                .append("Match value:'")
                 .append(mapping.getMatchValue())
+                .append("'")
                 .append("\n")
-                .append("Pattern:")
-                .append(mapping.getPattern());
+                .append("Pattern:'")
+                .append(mapping.getPattern())
+                .append("'");
     }
  
 }

@@ -3,9 +3,11 @@ package org.javaee8.jsonb.mapping.controller;
 import org.javaee8.jsonb.mapping.domain.Person;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 /**
  * 
  * @author Gaurav Gupta
@@ -20,6 +22,7 @@ public class PersonController {
      *
      */
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Person> getAllPeople() {
         Person person1 = new Person();
         person1.setName("Ondrej");

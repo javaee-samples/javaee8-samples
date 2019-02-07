@@ -38,9 +38,10 @@ public class Http2Test {
 
     @Deployment
     public static WebArchive createDeployment() {
-        final WebArchive war = create(WebArchive.class).addPackages(true, "org.javaee8.servlet.http2")
+        final WebArchive war = create(WebArchive.class).addClasses(Servlet.class)
                 .addAsWebResource(new File("src/main/webapp/images/payara-logo.jpg"), "images/payara-logo.jpg")
-                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"));
+                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"))
+                .addAsResource("project-defaults.yml"); // only for Thormtail;
         System.out.println("War file content: \n" + war.toString(true));
         return war;
     }

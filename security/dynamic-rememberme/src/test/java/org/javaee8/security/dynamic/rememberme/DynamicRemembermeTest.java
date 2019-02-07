@@ -47,7 +47,8 @@ public class DynamicRemembermeTest {
                     Servlet.class
                 )
                 .addPackage(
-                    RememberMeAnnotationLiteral.class.getPackage());
+                    RememberMeAnnotationLiteral.class.getPackage())
+                .addAsWebInfResource("jboss-web.xml");
     }
 
     @Before
