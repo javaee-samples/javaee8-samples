@@ -66,18 +66,12 @@ public class RemoteBeanTest {
     @Test
     @RunAsClient
     public void callProtectedRemoteBean() throws NamingException {
-        
-        try {
-
         // Obtain the JNDI naming context in a vendor specific way.
         Context ejbRemoteContext = remoteEJBContextProvider.getContextWithCredentialsSet("u1", "p1");
 
         BeanRemote beanRemote = (BeanRemote) ejbRemoteContext.lookup("java:global/test/Bean");
 
         assertEquals("method", beanRemote.method());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }
