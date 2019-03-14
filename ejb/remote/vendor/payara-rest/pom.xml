@@ -21,5 +21,10 @@
             <artifactId>test-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>fish.payara.extras</groupId>
+            <artifactId>ejb-http-client</artifactId>
+            <version>5.191</version>
+        </dependency>
     </dependencies>
 </project>

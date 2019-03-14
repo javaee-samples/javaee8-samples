@@ -23,10 +23,5 @@
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>fish.payara.ejb.rest</groupId>
-            <artifactId>ejb-rest-client</artifactId>
-            <version>5.191-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>
