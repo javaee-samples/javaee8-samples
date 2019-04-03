@@ -9,5 +9,12 @@
 
     <artifactId>events-async</artifactId>
     <name>Java EE 8 Samples: CDI - Events Async</name>
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>3.1.6</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
