@@ -25,8 +25,8 @@
 
         <!-- Application Server versions (these are downloaded and installed
             in these versions by Maven for the CI profiles) -->
-        <payara.version>5.183</payara.version>
-        <payara.micro.version>5.183</payara.micro.version>
+        <payara.version>5.192</payara.version>
+        <payara.micro.version>5.192</payara.micro.version>
         <glassfish.version>5.0</glassfish.version>
         <tomcat.version>9.0.12</tomcat.version>
         <thorntail.version>2.3.0.Final</thorntail.version>
