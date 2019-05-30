@@ -15,6 +15,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -78,6 +79,7 @@ public class ServletMappingTest {
         assertTrue(content.contains("Pattern:'*.ext'"));
     }
     
+    @Ignore("excused in pull/34")
     @Test
     @RunAsClient
     public void testRoot() throws IOException {
@@ -93,6 +95,7 @@ public class ServletMappingTest {
         assertTrue(content.contains("Pattern:''"));
     }
     
+    @Ignore("excused in pull/34")
     @Test
     @RunAsClient
     public void testDefault() throws IOException {
