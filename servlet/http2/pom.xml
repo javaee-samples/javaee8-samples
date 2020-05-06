@@ -14,7 +14,7 @@
     <name>Java EE 8 Samples: Servlet - http2</name>
 
     <properties>
-        <jetty-version>9.4.11.v20180605</jetty-version>
+        <jetty-version>9.4.28.v20200408</jetty-version>
     </properties>
 
     <dependencies>
@@ -46,6 +46,7 @@
     </dependencies>
 
     <!-- ALPN profiles are needed to ensure that the correct ALPN version is used -->
+    <!-- note that 8u251 and above have ALPN support built-in and the Jetty ALPN JAR should not be present -->
     <profiles>
         <profile>
             <id>alpn-when-jdk8</id>
@@ -53,18 +54,19 @@
                 <jdk>1.8</jdk>
             </activation>
             <properties>
-                <!-- default is the newest possible, supports 8u161 to 8u191 -->
+                <!-- default is the newest possible, supports 8u191 to 8u242 -->
                 <alpn.version>8.1.13.v20181017</alpn.version>
                 <bootclasspathPrefix>
                     ${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/${alpn.version}/alpn-boot-${alpn.version}.jar
                 </bootclasspathPrefix>
+                <surefireArgLine>-Xbootclasspath/p:${bootclasspathPrefix}</surefireArgLine>
             </properties>
             <build>
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <argLine>-Xbootclasspath/p:${bootclasspathPrefix}</argLine>
+                            <argLine>${surefireArgLine}</argLine>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -408,6 +410,97 @@
             </activation>
             <properties>
                 <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_211</id>
+            <activation>
+                <jdk>1.8.0_211</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_212</id>
+            <activation>
+                <jdk>1.8.0_212</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_221</id>
+            <activation>
+                <jdk>1.8.0_221</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_222</id>
+            <activation>
+                <jdk>1.8.0_222</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_231</id>
+            <activation>
+                <jdk>1.8.0_231</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_232</id>
+            <activation>
+                <jdk>1.8.0_232</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_241</id>
+            <activation>
+                <jdk>1.8.0_241</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>alpn-when-jdk8_242</id>
+            <activation>
+                <jdk>1.8.0_242</jdk>
+            </activation>
+            <properties>
+                <alpn.version>8.1.13.v20181017</alpn.version>
+            </properties>
+        </profile>
+
+        <profile>
+           <id>alpn-when-jdk8_251</id>
+            <activation>
+                <jdk>1.8.0_251</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+        <profile>
+           <id>alpn-when-jdk8_252</id>
+            <activation>
+                <jdk>1.8.0_252</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
             </properties>
         </profile>
     </profiles>
