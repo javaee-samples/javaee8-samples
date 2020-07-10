@@ -508,6 +508,61 @@
                 <surefireArgLine/>
             </properties>
         </profile>
+        <profile>
+           <id>alpn-when-jdk8_262</id>
+            <activation>
+                <jdk>1.8.0_262</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+        <profile>
+           <id>alpn-when-jdk8_265</id>
+            <activation>
+                <jdk>1.8.0_265</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+        <profile>
+           <id>alpn-when-jdk8_272</id>
+            <activation>
+                <jdk>1.8.0_272</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+        <profile>
+           <id>alpn-when-jdk8_275</id>
+            <activation>
+                <jdk>1.8.0_275</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+        <profile>
+           <id>alpn-when-jdk8_282</id>
+            <activation>
+                <jdk>1.8.0_282</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+        <profile>
+           <id>alpn-when-jdk8_292</id>
+            <activation>
+                <jdk>1.8.0_292</jdk>
+            </activation>
+            <properties>
+                <surefireArgLine/>
+            </properties>
+        </profile>
+
     </profiles>
 
 </project>
