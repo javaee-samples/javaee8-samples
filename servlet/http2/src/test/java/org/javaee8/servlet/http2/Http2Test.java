@@ -67,7 +67,7 @@ public class Http2Test {
     @Test(timeout = 10000L)
     @RunAsClient
     public void testHttp2ControlGroup() throws Exception {
-        Response response = testUri(new URI("https://http2.akamai.com/"));
+        Response response = testUri(new URI("https://linkedin.com/"));
         assertThat("myproto header", response.getHeaderString("myproto"), Matchers.equalTo("h2"));
     }
 
